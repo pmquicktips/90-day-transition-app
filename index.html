@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>90-Day SME to PM Transition Roadmap</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #1a4d7a;
+            --primary-light: #2e75b6;
+            --secondary: #44546a;
+            --success: #70ad47;
+            --bg: #f8f9fa;
+            --card: #ffffff;
+            --text: #1a1a1a;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+        }
+        
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .progress-section {
+            background: var(--card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            margin-bottom: 2rem;
+        }
+        
+        .progress-bar {
+            background: var(--border);
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, var(--success) 0%, var(--primary-light) 100%);
+            height: 100%;
+            transition: width 0.5s ease;
+            border-radius: 6px;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .nav-tab {
+            padding: 0.75rem 1.5rem;
+            background: var(--card);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tab:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+        
+        .nav-tab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--primary-light);
+        }
+        
+        .card h2 {
+            font-family: 'Fraunces', serif;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.75rem;
+        }
+        
+        .card h3 {
+            color: var(--secondary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+        
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-light);
+        }
+        
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            text-align: left;
+        }
+        
+        th {
+            background: var(--bg);
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        td input[type="text"],
+        td input[type="number"] {
+            width: 100%;
+            border: 1px solid var(--border);
+            padding: 0.5rem;
+        }
+        
+        td input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46, 117, 182, 0.3);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .alert-success {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            color: #065f46;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .save-indicator {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--success);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .save-indicator.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .card { padding: 1.5rem; }
+            .nav-tab { padding: 0.5rem 1rem; font-size: 0.9rem; }
+            table { font-size: 0.9rem; }
+            th, td { padding: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <h1>90-Day SME to PM Transition Roadmap</h1>
+            <div class="tagline">Your personalized transition plan based on assessment results</div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="progress-section">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <strong>Your Progress</strong>
+                    <div id="dayCounter" style="color: var(--primary); font-size: 1.25rem; margin-top: 0.25rem;">Day 0 of 90</div>
+                </div>
+                <div id="progressPercent" style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">0%</div>
+            </div>
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill" style="width: 0%"></div>
+            </div>
+        </div>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active" onclick="showSection('assessment')">Assessment</div>
+            <div class="nav-tab" onclick="showSection('priorities')">Priorities</div>
+            <div class="nav-tab" onclick="showSection('month1')">Days 1-30</div>
+            <div class="nav-tab" onclick="showSection('month2')">Days 31-60</div>
+            <div class="nav-tab" onclick="showSection('month3')">Days 61-90</div>
+            <div class="nav-tab" onclick="showSection('evaluation')">Evaluation</div>
+            <div class="nav-tab" onclick="showSection('next90')">Next 90</div>
+            <div class="nav-tab" onclick="showSection('quickref')">Quick Ref</div>
+        </div>
+        
+        <div id="assessment" class="section">
+            <div class="card">
+                <h2>ASSESSMENT RESULTS</h2>
+                <div class="form-group">
+                    <label>Total Score (out of 50):</label>
+                    <input type="number" id="totalScore" min="10" max="50" onchange="calculateLevel()" placeholder="Enter total score">
+                </div>
+                <div class="form-group">
+                    <label>Readiness Level:</label>
+                    <input type="text" id="readinessLevel" readonly placeholder="Auto-fills based on score">
+                </div>
+                
+                <h2 style="margin-top: 2rem;">YOUR FOCUS BASED ON READINESS LEVEL</h2>
+                <p><strong>Level 1 (10-14) - Technical Expert:</strong><br>
+                Focus: Stop doing technical work. Delegate 2-3 tasks/week. Block 3hrs weekly for strategic thinking.</p>
+                
+                <p style="margin-top: 1rem;"><strong>Level 2 (15-24) - Emerging Leader:</strong><br>
+                Focus: Build consistent delegation habits. Shift from solving to guiding. Establish clear boundaries.</p>
+                
+                <p style="margin-top: 1rem;"><strong>Level 3 (25-34) - Defined PM:</strong><br>
+                Focus: Embrace PM identity fully. Delegate challenging work. Increase strategic planning time.</p>
+                
+                <p style="margin-top: 1rem;"><strong>Level 4 (35-44) - Managed PM:</strong><br>
+                Focus: Refine delegation quality. Deepen strategic thinking. Build team independence.</p>
+                
+                <p style="margin-top: 1rem;"><strong>Level 5 (45-50) - Optimized Leader:</strong><br>
+                Focus: Mentor other transitioning SMEs. Drive organizational leadership development.</p>
+                
+                <table style="margin-top: 2rem;">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th style="width: 100px;">Score</th>
+                            <th style="width: 100px;">Priority?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Q1: Delegate tasks</td><td><input type="number" id="q1" min="1" max="5" onchange="saveData()"></td><td><input type="checkbox" id="q1_p" onchange="saveData()"></td></tr>
+                        <tr><td>Q2: Focus on leading</td><td><input type="number" id="q2" min="1" max="5" onchange="saveData()"></td><td><input type="checkbox" id="q2_p" onchange="saveData()"></td></tr>
+                        <tr><td>Q3: Empower decisions</td><td><input type="number" id="q3" min="1" max="5" onchange="saveData()"></td><td><input type="checkbox" id="q3_p" onchange="saveData()"></td></tr>
+                        <tr><td>Q4: Guide vs micromanage</td><td><input type="number" id="q4" min="1" max="5" onchange="saveData()"></td><td><input type="checkbox" id="q4_p" onchange="saveData()"></td></tr>
+                        <tr><td>Q5: Communicate goals</td><td><input type="number" id="q5" min="1" max="5" onchange="saveData()"></td><td><input type="checkbox" id="q5_p" onchange="saveData()"></td></tr>
+                        <tr><td>Q6: Strategic decisions</td><td><input type="number" id="q6" min="1" max="5" onchange="saveData()"></td><td><input type="checkbox" id="q6_p" onchange="saveData()"></td></tr>
+                        <tr><td>Q7: Recognize technical slip</td><td><input type="number" id="q7" min="1" max="5" onchange="saveData()"></td><td><input type="checkbox" id="q7_p" onchange="saveData()"></td></tr>
+                        <tr><td>Q8: Create opportunities</td><td><input type="number" id="q8" min="1" max="5" onchange="saveData()"></td><td><input type="checkbox" id="q8_p" onchange="saveData()"></td></tr>
+                        <tr><td>Q9: Use PM tools</td><td><input type="number" id="q9" min="1" max="5" onchange="saveData()"></td><td><input type="checkbox" id="q9_p" onchange="saveData()"></td></tr>
+                        <tr><td>Q10: Set objectives</td><td><input type="number" id="q10" min="1" max="5" onchange="saveData()"></td><td><input type="checkbox" id="q10_p" onchange="saveData()"></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div id="priorities" class="section hidden">
+            <div class="card">
+                <h2>YOUR TOP 3 PRIORITIES FOR 90 DAYS</h2>
+                <h3>Priority 1: Biggest Development Need</h3>
+                <div class="form-group">
+                    <label>What skill/behavior needs most improvement?</label>
+                    <textarea id="p1_skill" onchange="saveData()"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>What does success look like in 90 days?</label>
+                    <textarea id="p1_success" onchange="saveData()"></textarea>
+                </div>
+                
+                <h3>Priority 2: Quick Win</h3>
+                <div class="form-group">
+                    <label>What can you improve quickly for visible impact?</label>
+                    <textarea id="p2_win" onchange="saveData()"></textarea>
+                </div>
+                
+                <h3>Priority 3: Team Development</h3>
+                <div class="form-group">
+                    <label>Who on your team needs immediate skills development? What capability?</label>
+                    <textarea id="p3_team" onchange="saveData()"></textarea>
+                </div>
+            </div>
+        </div>
+        
+        <div id="month1" class="section hidden">
+            <div class="card">
+                <h2>DAYS 1-30: FOUNDATION</h2>
+                <h3>Week 1: Assessment & Communication</h3>
+                <table>
+                    <thead><tr><th>Action</th><th style="width: 60px;">✓</th></tr></thead>
+                    <tbody>
+                        <tr><td>Observe strengths and weaknesses of each team member</td><td><input type="checkbox" id="w1a1" onchange="saveData()"></td></tr>
+                        <tr><td>Identify one concrete action to improve your communication skills</td><td><input type="checkbox" id="w1a2" onchange="saveData()"></td></tr>
+                        <tr><td>Identify one task to stop doing that is impacting your PM transition</td><td><input type="checkbox" id="w1a3" onchange="saveData()"></td></tr>
+                    </tbody>
+                </table>
+                
+                <h3>Week 2-3: Delegation & Structure</h3>
+                <table>
+                    <thead><tr><th>Task to Delegate</th><th>Assigned To</th><th>Result</th></tr></thead>
+                    <tbody>
+                        <tr><td><input type="text" id="d1t" onchange="saveData()"></td><td><input type="text" id="d1p" onchange="saveData()"></td><td><input type="text" id="d1r" onchange="saveData()"></td></tr>
+                        <tr><td><input type="text" id="d2t" onchange="saveData()"></td><td><input type="text" id="d2p" onchange="saveData()"></td><td><input type="text" id="d2r" onchange="saveData()"></td></tr>
+                        <tr><td><input type="text" id="d3t" onchange="saveData()"></td><td><input type="text" id="d3p" onchange="saveData()"></td><td><input type="text" id="d3r" onchange="saveData()"></td></tr>
+                    </tbody>
+                </table>
+                
+                <h3>Week 4: Month 1 Evaluation</h3>
+                <div class="form-group">
+                    <label>Time split - Technical: ___% | PM: ___% | Strategic: ___%</label>
+                    <input type="text" id="m1time" onchange="saveData()" placeholder="E.g., 40% / 40% / 20%">
+                </div>
+                <div class="form-group">
+                    <label>What will you do differently in Month 2?</label>
+                    <textarea id="m1diff" onchange="saveData()"></textarea>
+                </div>
+            </div>
+        </div>
+        
+        <div id="month2" class="section hidden">
+            <div class="card">
+                <h2>DAYS 31-60: DEVELOPMENT</h2>
+                <h3>Week 5-6: Team Development</h3>
+                <table>
+                    <thead><tr><th>Team Member</th><th>Strength to Leverage</th><th>Development Action</th></tr></thead>
+                    <tbody>
+                        <tr><td><input type="text" id="t1n" onchange="saveData()"></td><td><input type="text" id="t1s" onchange="saveData()"></td><td><input type="text" id="t1a" onchange="saveData()"></td></tr>
+                        <tr><td><input type="text" id="t2n" onchange="saveData()"></td><td><input type="text" id="t2s" onchange="saveData()"></td><td><input type="text" id="t2a" onchange="saveData()"></td></tr>
+                        <tr><td><input type="text" id="t3n" onchange="saveData()"></td><td><input type="text" id="t3s" onchange="saveData()"></td><td><input type="text" id="t3a" onchange="saveData()"></td></tr>
+                    </tbody>
+                </table>
+                
+                <h3>Week 7-8: Process Improvement</h3>
+                <p><strong>Identify and Fix:</strong></p>
+                <div class="form-group">
+                    <label>Bottleneck:</label>
+                    <textarea id="m2bn" onchange="saveData()"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Communication gap:</label>
+                    <textarea id="m2cg" onchange="saveData()"></textarea>
+                </div>
+                
+                <h3>Month 2 Check-In</h3>
+                <div class="form-group">
+                    <label>Learning opportunities created:</label>
+                    <textarea id="m2lo" onchange="saveData()"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Delegation successes:</label>
+                    <textarea id="m2ds" onchange="saveData()"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Challenges encountered:</label>
+                    <textarea id="m2ch" onchange="saveData()"></textarea>
+                </div>
+            </div>
+        </div>
+        
+        <div id="month3" class="section hidden">
+            <div class="card">
+                <h2>DAYS 61-90: REFINEMENT</h2>
+                <h3>Week 9-10: Advanced Delegation</h3>
+                <div class="form-group">
+                    <label>Significant responsibility to hand off completely:</label>
+                    <textarea id="m3resp" onchange="saveData()"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Who takes it? What support do they need?</label>
+                    <textarea id="m3supp" onchange="saveData()"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>What oversight will you eliminate?</label>
+                    <textarea id="m3over" onchange="saveData()"></textarea>
+                </div>
+                
+                <h3>Week 11-12: Culture & Sustainability</h3>
+                <p><strong>Establish:</strong></p>
+                <p style="margin-top: 0.5rem;">
+                    <label style="display: inline;"><input type="checkbox" id="c1" onchange="saveData()"> Team member recognition practice</label><br>
+                    <label style="display: inline; margin-top: 0.5rem;"><input type="checkbox" id="c2" onchange="saveData()"> Feedback mechanism created</label><br>
+                    <label style="display: inline; margin-top: 0.5rem;"><input type="checkbox" id="c3" onchange="saveData()"> Problem-solving approach</label>
+                </p>
+            </div>
+        </div>
+        
+        <div id="evaluation" class="section hidden">
+            <div class="card">
+                <h2>90-DAY EVALUATION</h2>
+                <h3>Quantitative Progress</h3>
+                <table>
+                    <thead><tr><th>Activity</th><th>Day 1 %</th><th>Day 90 %</th></tr></thead>
+                    <tbody>
+                        <tr><td>Technical work</td><td><input type="number" id="ets" onchange="saveData()" style="width: 80px;"></td><td><input type="number" id="ete" onchange="saveData()" style="width: 80px;"></td></tr>
+                        <tr><td>PM work</td><td><input type="number" id="eps" onchange="saveData()" style="width: 80px;"></td><td><input type="number" id="epe" onchange="saveData()" style="width: 80px;"></td></tr>
+                        <tr><td>Strategic thinking</td><td><input type="number" id="ess" onchange="saveData()" style="width: 80px;"></td><td><input type="number" id="ese" onchange="saveData()" style="width: 80px;"></td></tr>
+                    </tbody>
+                </table>
+                
+                <div class="form-group">
+                    <label>Retake assessment - New Score:</label>
+                    <input type="number" id="ens" min="10" max="50" onchange="saveData()">
+                </div>
+                <div class="form-group">
+                    <label>Score improvement:</label>
+                    <input type="text" id="esi" onchange="saveData()">
+                </div>
+                <div class="form-group">
+                    <label>Tasks successfully delegated:</label>
+                    <input type="text" id="etd" onchange="saveData()">
+                </div>
+                
+                <h3>Qualitative Reflection</h3>
+                <div class="form-group">
+                    <label>Behavior change you're most proud of:</label>
+                    <textarea id="epr" onchange="saveData()"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>What was harder than expected:</label>
+                    <textarea id="ehe" onchange="saveData()"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>How has your team responded:</label>
+                    <textarea id="etr" onchange="saveData()"></textarea>
+                </div>
+            </div>
+        </div>
+        
+        <div id="next90" class="section hidden">
+            <div class="card">
+                <h2>YOUR NEXT 90 DAYS</h2>
+                <h3>Continuing Focus Areas</h3>
+                <div class="form-group">
+                    <label>Habit needing more consistency:</label>
+                    <textarea id="nha" onchange="saveData()"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Skill needing deeper development:</label>
+                    <textarea id="nsk" onchange="saveData()"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Next-level leadership capability to build:</label>
+                    <textarea id="nca" onchange="saveData()"></textarea>
+                </div>
+            </div>
+        </div>
+        
+        <div id="quickref" class="section hidden">
+            <div class="card">
+                <h2>QUICK REFERENCE GUIDE</h2>
+                <h3>⚠️ Warning Signs You're Reverting to SME Mode</h3>
+                <p>• Working on more tactical tasks than leadership tasks | • Solving technical problems instead of guiding | • Haven't delegated significantly in 2 weeks | • Checking in multiple times daily</p>
+                
+                <h3>🔄 Emergency Reset Protocol</h3>
+                <p>1. Acknowledge without judgment | 2. Identify the trigger | 3. Re-delegate work you took back | 4. Block 2hrs for strategic thinking NOW | 5. Recommit to one PM behavior this week</p>
+                
+                <h3>✓ Weekly Check-In Questions (Every Friday)</h3>
+                <p>□ Delegated 2+ significant tasks? | □ Spent 50%+ time on PM/strategic work? | □ Resisted taking over when team struggled? | □ Created learning opportunity? | □ Communicated vision clearly?</p>
+                
+                <h3>Remember</h3>
+                <div class="alert-success">
+                    This transition is a journey. Setbacks are normal. What matters is recognizing them, learning from them, and course-correcting. Every week you practice leadership in you project manager role, it becomes more natural. You have the plan—now execute it.
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin: 3rem 0;">
+            <button class="btn btn-primary" onclick="exportData()">📥 Export</button>
+            <button class="btn btn-secondary" onclick="clearAllData()" style="margin-left: 1rem;">🔄 Reset</button>
+        </div>
+    </div>
+    
+    <div id="saveIndicator" class="save-indicator">✓ Saved</div>
+    
+    <script>
+        function initializeApp() { loadData(); updateProgress(); }
+        
+        function calculateLevel() {
+            const score = parseInt(document.getElementById('totalScore').value) || 0;
+            if (score === 0) { document.getElementById('readinessLevel').value = ''; return; }
+            
+            let level = '';
+            if (score >= 45) level = 'Level 5: Optimized Leader';
+            else if (score >= 35) level = 'Level 4: Managed PM';
+            else if (score >= 25) level = 'Level 3: Defined PM';
+            else if (score >= 15) level = 'Level 2: Emerging Leader';
+            else level = 'Level 1: Technical Expert';
+            
+            document.getElementById('readinessLevel').value = level;
+            if (!localStorage.getItem('startDate')) {
+                localStorage.setItem('startDate', new Date().toISOString());
+                updateProgress();
+            }
+            saveData();
+        }
+        
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
+            document.getElementById(sectionId).classList.remove('hidden');
+            document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        
+        function updateProgress() {
+            const startDate = localStorage.getItem('startDate');
+            if (!startDate) return;
+            const start = new Date(startDate);
+            const now = new Date();
+            const daysPassed = Math.floor((now - start) / (1000 * 60 * 60 * 24));
+            const daysElapsed = Math.min(daysPassed, 90);
+            const percentComplete = Math.round((daysElapsed / 90) * 100);
+            document.getElementById('dayCounter').textContent = `Day ${daysElapsed} of 90`;
+            document.getElementById('progressPercent').textContent = `${percentComplete}%`;
+            document.getElementById('progressFill').style.width = `${percentComplete}%`;
+        }
+        
+        async function saveData() {
+            const data = {};
+            document.querySelectorAll('input, textarea').forEach(el => {
+                if (el.id) data[el.id] = el.type === 'checkbox' ? el.checked : el.value;
+            });
+            try {
+                await window.storage.set('pm-roadmap', JSON.stringify(data));
+                showSaveIndicator();
+            } catch (error) {
+                localStorage.setItem('pmRoadmap', JSON.stringify(data));
+                showSaveIndicator();
+            }
+        }
+        
+        async function loadData() {
+            try {
+                const result = await window.storage.get('pm-roadmap');
+                const data = result ? JSON.parse(result.value) : null;
+                if (!data) {
+                    const localData = localStorage.getItem('pmRoadmap');
+                    if (localData) restoreData(JSON.parse(localData));
+                    return;
+                }
+                restoreData(data);
+            } catch (error) {
+                const localData = localStorage.getItem('pmRoadmap');
+                if (localData) restoreData(JSON.parse(localData));
+            }
+        }
+        
+        function restoreData(data) {
+            Object.keys(data).forEach(key => {
+                const el = document.getElementById(key);
+                if (el) el.type === 'checkbox' ? el.checked = data[key] : el.value = data[key];
+            });
+            if (data.totalScore) calculateLevel();
+        }
+        
+        function showSaveIndicator() {
+            const indicator = document.getElementById('saveIndicator');
+            indicator.classList.add('show');
+            setTimeout(() => indicator.classList.remove('show'), 2000);
+        }
+        
+        function exportData() {
+            const data = localStorage.getItem('pmRoadmap');
+            if (!data) { alert('No data to export!'); return; }
+            const blob = new Blob([data], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `90-day-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+        }
+        
+        async function clearAllData() {
+            if (confirm('Reset ALL data? Cannot be undone.')) {
+                try { await window.storage.delete('pm-roadmap'); } catch (error) {}
+                localStorage.clear();
+                location.reload();
+            }
+        }
+        
+        initializeApp();
+        setInterval(updateProgress, 3600000);
+    </script>
+</body>
+</html>

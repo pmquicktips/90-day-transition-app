@@ -399,9 +399,7 @@
         
         <!-- ACTION BUTTONS -->
         <div class="action-buttons">
-            <button class="btn btn-primary btn-small" onclick="exportData()">📥 Export Roadmap</button>
-            <button class="btn btn-primary btn-small" onclick="triggerImport()">📤 Import Roadmap</button>
-            <input type="file" id="importFile" accept=".json" style="display:none;" onchange="importData()">
+            <button class="btn btn-primary btn-small" onclick="printRoadmap()">🖨️ Print Roadmap</button>
             <button class="btn btn-secondary btn-small" onclick="resetRoadmap()">🔄 Reset</button>
         </div>
     </div>
@@ -1124,10 +1122,13 @@
             reader.readAsText(file);
         }
         
+        function printRoadmap() {
+            window.print();
+        }
+        
         function resetRoadmap() {
             if (confirm('Reset your roadmap? This will delete all saved data.')) {
                 localStorage.clear();
-                document.getElementById('importFile').value = '';
                 location.reload();
             }
         }

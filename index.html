@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>90-Day SME to PM Transition Roadmap</title>
+    <title>90-Day PM Transition Roadmap</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
         
@@ -65,29 +65,6 @@
             max-width: 1200px;
             margin: 2rem auto;
             padding: 0 1rem;
-        }
-        
-        .progress-section {
-            background: var(--card);
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            margin-bottom: 2rem;
-        }
-        
-        .progress-bar {
-            background: var(--border);
-            height: 12px;
-            border-radius: 6px;
-            overflow: hidden;
-            margin-top: 1rem;
-        }
-        
-        .progress-fill {
-            background: linear-gradient(90deg, var(--success) 0%, var(--primary-light) 100%);
-            height: 100%;
-            transition: width 0.5s ease;
-            border-radius: 6px;
         }
         
         .nav-tabs {
@@ -172,40 +149,33 @@
             border-color: var(--primary-light);
         }
         
-        textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-        }
-        
-        th, td {
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-            text-align: left;
-        }
-        
-        th {
-            background: var(--bg);
+        .level-badge {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 20px;
             font-weight: 600;
-            color: var(--secondary);
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
         }
         
-        td input[type="text"],
-        td input[type="number"] {
-            width: 100%;
-            border: 1px solid var(--border);
-            padding: 0.5rem;
+        .level-1 { background: #fee2e2; color: #991b1b; }
+        .level-2 { background: #fef3c7; color: #92400e; }
+        .level-3 { background: #dbeafe; color: #1e40af; }
+        .level-4 { background: #d1fae5; color: #065f46; }
+        .level-5 { background: #e9d5ff; color: #6b21a8; }
+        
+        .focus-area-box {
+            background: var(--bg);
+            border-left: 4px solid var(--primary-light);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
         }
         
-        td input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
+        .focus-area-box strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.5rem;
         }
         
         .btn {
@@ -234,13 +204,29 @@
             color: white;
         }
         
-        .alert-success {
-            background: #d1fae5;
-            border-left: 4px solid #10b981;
-            color: #065f46;
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+        }
+        
+        .alert {
             padding: 1rem 1.5rem;
             border-radius: 8px;
             margin: 1rem 0;
+            border-left: 4px solid;
+        }
+        
+        .alert-info {
+            background: #dbeafe;
+            border-color: #2563eb;
+            color: #1e40af;
+        }
+        
+        .alert-success {
+            background: #d1fae5;
+            border-color: #10b981;
+            color: #065f46;
         }
         
         .hidden {
@@ -259,6 +245,7 @@
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.3s ease;
+            z-index: 1000;
         }
         
         .save-indicator.show {
@@ -266,337 +253,781 @@
             transform: translateY(0);
         }
         
+        .week-content {
+            background: var(--bg);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-light);
+        }
+        
+        .week-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+        
+        .week-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .week-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .week-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--border);
+        }
+        
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
             .card { padding: 1.5rem; }
             .nav-tab { padding: 0.5rem 1rem; font-size: 0.9rem; }
-            table { font-size: 0.9rem; }
-            th, td { padding: 0.5rem; }
         }
     </style>
 </head>
 <body>
     <div class="header">
         <div class="header-content">
-            <h1>90-Day SME to PM Transition Roadmap</h1>
-            <div class="tagline">Your personalized transition plan based on assessment results</div>
+            <h1>90-Day PM Transition Roadmap</h1>
         </div>
     </div>
     
     <div class="container">
-        <div class="progress-section">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                    <strong>Your Progress</strong>
-                    <div id="dayCounter" style="color: var(--primary); font-size: 1.25rem; margin-top: 0.25rem;">Day 0 of 90</div>
-                </div>
-                <div id="progressPercent" style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">0%</div>
-            </div>
-            <div class="progress-bar">
-                <div id="progressFill" class="progress-fill" style="width: 0%"></div>
-            </div>
-        </div>
-        
+        <!-- NAVIGATION TABS -->
         <div class="nav-tabs">
-            <div class="nav-tab active" onclick="showSection('assessment')">Assessment</div>
-            <div class="nav-tab" onclick="showSection('priorities')">Priorities</div>
-            <div class="nav-tab" onclick="showSection('month1')">Days 1-30</div>
-            <div class="nav-tab" onclick="showSection('month2')">Days 31-60</div>
-            <div class="nav-tab" onclick="showSection('month3')">Days 61-90</div>
-            <div class="nav-tab" onclick="showSection('evaluation')">Evaluation</div>
-            <div class="nav-tab" onclick="showSection('next90')">Next 90</div>
-            <div class="nav-tab" onclick="showSection('quickref')">Quick Ref</div>
+            <div class="nav-tab active" onclick="showSection('score')">Your Score</div>
+            <div class="nav-tab" onclick="showSection('results')" id="tab-results">Results</div>
+            <div class="nav-tab" onclick="showSection('month1')" id="tab-month1">Days 1-30</div>
+            <div class="nav-tab" onclick="showSection('month2')" id="tab-month2">Days 31-60</div>
+            <div class="nav-tab" onclick="showSection('month3')" id="tab-month3">Days 61-90</div>
+            <div class="nav-tab" onclick="showSection('quickref')" id="tab-quickref">Quick Ref</div>
         </div>
         
-        <div id="assessment" class="section">
+        <!-- SCORE INPUT SECTION -->
+        <div id="score" class="section">
             <div class="card">
-                <h2>ASSESSMENT RESULTS</h2>
-                <div class="form-group">
-                    <label>Total Score (out of 50):</label>
-                    <input type="number" id="totalScore" min="10" max="50" onchange="calculateLevel()" placeholder="Enter total score">
-                </div>
-                <div class="form-group">
-                    <label>Readiness Level:</label>
-                    <input type="text" id="readinessLevel" readonly placeholder="Auto-fills based on score">
+                <h2>📊 Enter Your Assessment Score</h2>
+                
+                <div class="alert alert-info">
+                    You've completed the PM Transition Readiness Self-Assessment. Enter your score below to generate your roadmap.
                 </div>
                 
-                <h2 style="margin-top: 2rem;">YOUR FOCUS BASED ON READINESS LEVEL</h2>
-                <p><strong>Level 1 (10-14) - Technical Expert:</strong><br>
-                Focus: Stop doing technical work. Delegate 2-3 tasks/week. Block 3hrs weekly for strategic thinking.</p>
+                <div class="form-group">
+                    <label for="scoreInput"><strong>Enter Your Self-Assessment Score (10-50):</strong></label>
+                    <input type="number" id="scoreInput" min="10" max="50" placeholder="Enter score between 10 and 50">
+                    <small style="color: var(--text-light); margin-top: 0.5rem; display: block;">
+                        This is the total score you received from your exam. Your score determines your personalized roadmap.
+                    </small>
+                </div>
                 
-                <p style="margin-top: 1rem;"><strong>Level 2 (15-24) - Emerging Leader:</strong><br>
-                Focus: Build consistent delegation habits. Shift from solving to guiding. Establish clear boundaries.</p>
-                
-                <p style="margin-top: 1rem;"><strong>Level 3 (25-34) - Defined PM:</strong><br>
-                Focus: Embrace PM identity fully. Delegate challenging work. Increase strategic planning time.</p>
-                
-                <p style="margin-top: 1rem;"><strong>Level 4 (35-44) - Managed PM:</strong><br>
-                Focus: Refine delegation quality. Deepen strategic thinking. Build team independence.</p>
-                
-                <p style="margin-top: 1rem;"><strong>Level 5 (45-50) - Optimized Leader:</strong><br>
-                Focus: Mentor other transitioning SMEs. Drive organizational leadership development.</p>
-                
-                <table style="margin-top: 2rem;">
-                    <thead>
-                        <tr>
-                            <th>Question</th>
-                            <th style="width: 100px;">Score</th>
-                            <th style="width: 100px;">Priority?</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Q1: Delegate tasks</td><td><input type="number" id="q1" min="1" max="5" onchange="saveData()"></td><td><input type="checkbox" id="q1_p" onchange="saveData()"></td></tr>
-                        <tr><td>Q2: Focus on leading</td><td><input type="number" id="q2" min="1" max="5" onchange="saveData()"></td><td><input type="checkbox" id="q2_p" onchange="saveData()"></td></tr>
-                        <tr><td>Q3: Empower decisions</td><td><input type="number" id="q3" min="1" max="5" onchange="saveData()"></td><td><input type="checkbox" id="q3_p" onchange="saveData()"></td></tr>
-                        <tr><td>Q4: Guide vs micromanage</td><td><input type="number" id="q4" min="1" max="5" onchange="saveData()"></td><td><input type="checkbox" id="q4_p" onchange="saveData()"></td></tr>
-                        <tr><td>Q5: Communicate goals</td><td><input type="number" id="q5" min="1" max="5" onchange="saveData()"></td><td><input type="checkbox" id="q5_p" onchange="saveData()"></td></tr>
-                        <tr><td>Q6: Strategic decisions</td><td><input type="number" id="q6" min="1" max="5" onchange="saveData()"></td><td><input type="checkbox" id="q6_p" onchange="saveData()"></td></tr>
-                        <tr><td>Q7: Recognize technical slip</td><td><input type="number" id="q7" min="1" max="5" onchange="saveData()"></td><td><input type="checkbox" id="q7_p" onchange="saveData()"></td></tr>
-                        <tr><td>Q8: Create opportunities</td><td><input type="number" id="q8" min="1" max="5" onchange="saveData()"></td><td><input type="checkbox" id="q8_p" onchange="saveData()"></td></tr>
-                        <tr><td>Q9: Use PM tools</td><td><input type="number" id="q9" min="1" max="5" onchange="saveData()"></td><td><input type="checkbox" id="q9_p" onchange="saveData()"></td></tr>
-                        <tr><td>Q10: Set objectives</td><td><input type="number" id="q10" min="1" max="5" onchange="saveData()"></td><td><input type="checkbox" id="q10_p" onchange="saveData()"></td></tr>
-                    </tbody>
-                </table>
+                <button class="btn btn-primary" onclick="generateRoadmap()">Generate My Roadmap</button>
             </div>
         </div>
         
-        <div id="priorities" class="section hidden">
+        <!-- RESULTS SECTION -->
+        <div id="results" class="section hidden">
             <div class="card">
-                <h2>YOUR TOP 3 PRIORITIES FOR 90 DAYS</h2>
-                <h3>Priority 1: Biggest Development Need</h3>
-                <div class="form-group">
-                    <label>What skill/behavior needs most improvement?</label>
-                    <textarea id="p1_skill" onchange="saveData()"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>What does success look like in 90 days?</label>
-                    <textarea id="p1_success" onchange="saveData()"></textarea>
+                <h2>📈 Your Readiness Assessment Results</h2>
+                
+                <div style="display: flex; align-items: center; gap: 2rem; margin: 2rem 0;">
+                    <div>
+                        <div style="font-size: 3.5rem; font-weight: 700; color: var(--primary);" id="scoreDisplay">--</div>
+                        <div style="font-size: 0.9rem; color: var(--text-light);">out of 50</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Your Readiness Level:</div>
+                        <div id="levelDisplay"></div>
+                    </div>
                 </div>
                 
-                <h3>Priority 2: Quick Win</h3>
-                <div class="form-group">
-                    <label>What can you improve quickly for visible impact?</label>
-                    <textarea id="p2_win" onchange="saveData()"></textarea>
-                </div>
+                <div id="levelDescription" style="margin: 2rem 0;"></div>
                 
-                <h3>Priority 3: Team Development</h3>
-                <div class="form-group">
-                    <label>Who on your team needs immediate skills development? What capability?</label>
-                    <textarea id="p3_team" onchange="saveData()"></textarea>
+                <h3>Your Focus Areas for the Next 90 Days</h3>
+                <div id="focusAreasDisplay" style="margin-top: 1rem;"></div>
+                
+                <div class="alert alert-success" style="margin-top: 2rem;">
+                    ✅ Your complete 90-day roadmap is ready! All 13 weeks are now available in the Days 1-30, Days 31-60, and Days 61-90 tabs.
+                    You can review each week, download your roadmap as a backup, or start working through Week 1 immediately.
                 </div>
             </div>
         </div>
         
+        <!-- MONTH 1 SECTION: Days 1-30 (Weeks 1-4) -->
         <div id="month1" class="section hidden">
             <div class="card">
-                <h2>DAYS 1-30: FOUNDATION</h2>
-                <h3>Week 1: Assessment & Communication</h3>
-                <table>
-                    <thead><tr><th>Action</th><th style="width: 60px;">✓</th></tr></thead>
-                    <tbody>
-                        <tr><td>Observe strengths and weaknesses of each team member</td><td><input type="checkbox" id="w1a1" onchange="saveData()"></td></tr>
-                        <tr><td>Identify one concrete action to improve your communication skills</td><td><input type="checkbox" id="w1a2" onchange="saveData()"></td></tr>
-                        <tr><td>Identify one task to stop doing that is impacting your PM transition</td><td><input type="checkbox" id="w1a3" onchange="saveData()"></td></tr>
-                    </tbody>
-                </table>
-                
-                <h3>Week 2-3: Delegation & Structure</h3>
-                <table>
-                    <thead><tr><th>Task to Delegate</th><th>Assigned To</th><th>Result</th></tr></thead>
-                    <tbody>
-                        <tr><td><input type="text" id="d1t" onchange="saveData()"></td><td><input type="text" id="d1p" onchange="saveData()"></td><td><input type="text" id="d1r" onchange="saveData()"></td></tr>
-                        <tr><td><input type="text" id="d2t" onchange="saveData()"></td><td><input type="text" id="d2p" onchange="saveData()"></td><td><input type="text" id="d2r" onchange="saveData()"></td></tr>
-                        <tr><td><input type="text" id="d3t" onchange="saveData()"></td><td><input type="text" id="d3p" onchange="saveData()"></td><td><input type="text" id="d3r" onchange="saveData()"></td></tr>
-                    </tbody>
-                </table>
-                
-                <h3>Week 4: Month 1 Evaluation</h3>
-                <div class="form-group">
-                    <label>Time split - Technical: ___% | PM: ___% | Strategic: ___%</label>
-                    <input type="text" id="m1time" onchange="saveData()" placeholder="E.g., 40% / 40% / 20%">
-                </div>
-                <div class="form-group">
-                    <label>What will you do differently in Month 2?</label>
-                    <textarea id="m1diff" onchange="saveData()"></textarea>
-                </div>
+                <h2>📅 Days 1-30: Foundation Phase (Weeks 1-4)</h2>
+                <p style="margin-bottom: 1.5rem;">Build the core PM habits and systems tailored to your focus areas.</p>
+                <div id="month1Content"></div>
             </div>
         </div>
         
+        <!-- MONTH 2 SECTION: Days 31-60 (Weeks 5-8) -->
         <div id="month2" class="section hidden">
             <div class="card">
-                <h2>DAYS 31-60: DEVELOPMENT</h2>
-                <h3>Week 5-6: Team Development</h3>
-                <table>
-                    <thead><tr><th>Team Member</th><th>Strength to Leverage</th><th>Development Action</th></tr></thead>
-                    <tbody>
-                        <tr><td><input type="text" id="t1n" onchange="saveData()"></td><td><input type="text" id="t1s" onchange="saveData()"></td><td><input type="text" id="t1a" onchange="saveData()"></td></tr>
-                        <tr><td><input type="text" id="t2n" onchange="saveData()"></td><td><input type="text" id="t2s" onchange="saveData()"></td><td><input type="text" id="t2a" onchange="saveData()"></td></tr>
-                        <tr><td><input type="text" id="t3n" onchange="saveData()"></td><td><input type="text" id="t3s" onchange="saveData()"></td><td><input type="text" id="t3a" onchange="saveData()"></td></tr>
-                    </tbody>
-                </table>
-                
-                <h3>Week 7-8: Process Improvement</h3>
-                <p><strong>Identify and Fix:</strong></p>
-                <div class="form-group">
-                    <label>Bottleneck:</label>
-                    <textarea id="m2bn" onchange="saveData()"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Communication gap:</label>
-                    <textarea id="m2cg" onchange="saveData()"></textarea>
-                </div>
-                
-                <h3>Month 2 Check-In</h3>
-                <div class="form-group">
-                    <label>Learning opportunities created:</label>
-                    <textarea id="m2lo" onchange="saveData()"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Delegation successes:</label>
-                    <textarea id="m2ds" onchange="saveData()"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Challenges encountered:</label>
-                    <textarea id="m2ch" onchange="saveData()"></textarea>
-                </div>
+                <h2>📈 Days 31-60: Development Phase (Weeks 5-8)</h2>
+                <p style="margin-bottom: 1.5rem;">Deepen your PM capabilities focused on your priority areas.</p>
+                <div id="month2Content"></div>
             </div>
         </div>
         
+        <!-- MONTH 3 SECTION: Days 61-90 (Weeks 9-13) -->
         <div id="month3" class="section hidden">
             <div class="card">
-                <h2>DAYS 61-90: REFINEMENT</h2>
-                <h3>Week 9-10: Advanced Delegation</h3>
-                <div class="form-group">
-                    <label>Significant responsibility to hand off completely:</label>
-                    <textarea id="m3resp" onchange="saveData()"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Who takes it? What support do they need?</label>
-                    <textarea id="m3supp" onchange="saveData()"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>What oversight will you eliminate?</label>
-                    <textarea id="m3over" onchange="saveData()"></textarea>
-                </div>
-                
-                <h3>Week 11-12: Culture & Sustainability</h3>
-                <p><strong>Establish:</strong></p>
-                <p style="margin-top: 0.5rem;">
-                    <label style="display: inline;"><input type="checkbox" id="c1" onchange="saveData()"> Team member recognition practice</label><br>
-                    <label style="display: inline; margin-top: 0.5rem;"><input type="checkbox" id="c2" onchange="saveData()"> Feedback mechanism created</label><br>
-                    <label style="display: inline; margin-top: 0.5rem;"><input type="checkbox" id="c3" onchange="saveData()"> Problem-solving approach</label>
-                </p>
+                <h2>🎯 Days 61-90: Refinement Phase (Weeks 9-13)</h2>
+                <p style="margin-bottom: 1.5rem;">Establish sustainable PM practices and consolidate your growth.</p>
+                <div id="month3Content"></div>
             </div>
         </div>
         
-        <div id="evaluation" class="section hidden">
-            <div class="card">
-                <h2>90-DAY EVALUATION</h2>
-                <h3>Quantitative Progress</h3>
-                <table>
-                    <thead><tr><th>Activity</th><th>Day 1 %</th><th>Day 90 %</th></tr></thead>
-                    <tbody>
-                        <tr><td>Technical work</td><td><input type="number" id="ets" onchange="saveData()" style="width: 80px;"></td><td><input type="number" id="ete" onchange="saveData()" style="width: 80px;"></td></tr>
-                        <tr><td>PM work</td><td><input type="number" id="eps" onchange="saveData()" style="width: 80px;"></td><td><input type="number" id="epe" onchange="saveData()" style="width: 80px;"></td></tr>
-                        <tr><td>Strategic thinking</td><td><input type="number" id="ess" onchange="saveData()" style="width: 80px;"></td><td><input type="number" id="ese" onchange="saveData()" style="width: 80px;"></td></tr>
-                    </tbody>
-                </table>
-                
-                <div class="form-group">
-                    <label>Retake assessment - New Score:</label>
-                    <input type="number" id="ens" min="10" max="50" onchange="saveData()">
-                </div>
-                <div class="form-group">
-                    <label>Score improvement:</label>
-                    <input type="text" id="esi" onchange="saveData()">
-                </div>
-                <div class="form-group">
-                    <label>Tasks successfully delegated:</label>
-                    <input type="text" id="etd" onchange="saveData()">
-                </div>
-                
-                <h3>Qualitative Reflection</h3>
-                <div class="form-group">
-                    <label>Behavior change you're most proud of:</label>
-                    <textarea id="epr" onchange="saveData()"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>What was harder than expected:</label>
-                    <textarea id="ehe" onchange="saveData()"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>How has your team responded:</label>
-                    <textarea id="etr" onchange="saveData()"></textarea>
-                </div>
-            </div>
-        </div>
-        
-        <div id="next90" class="section hidden">
-            <div class="card">
-                <h2>YOUR NEXT 90 DAYS</h2>
-                <h3>Continuing Focus Areas</h3>
-                <div class="form-group">
-                    <label>Habit needing more consistency:</label>
-                    <textarea id="nha" onchange="saveData()"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Skill needing deeper development:</label>
-                    <textarea id="nsk" onchange="saveData()"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Next-level leadership capability to build:</label>
-                    <textarea id="nca" onchange="saveData()"></textarea>
-                </div>
-            </div>
-        </div>
-        
+        <!-- QUICK REFERENCE SECTION -->
         <div id="quickref" class="section hidden">
             <div class="card">
-                <h2>QUICK REFERENCE GUIDE</h2>
-                <h3>⚠️ Warning Signs You're Reverting to SME Mode</h3>
-                <p>• Working on more tactical tasks than leadership tasks | • Solving technical problems instead of guiding | • Haven't delegated significantly in 2 weeks | • Checking in multiple times daily</p>
-                
-                <h3>🔄 Emergency Reset Protocol</h3>
-                <p>1. Acknowledge without judgment | 2. Identify the trigger | 3. Re-delegate work you took back | 4. Block 2hrs for strategic thinking NOW | 5. Recommit to one PM behavior this week</p>
-                
-                <h3>✓ Weekly Check-In Questions (Every Friday)</h3>
-                <p>□ Delegated 2+ significant tasks? | □ Spent 50%+ time on PM/strategic work? | □ Resisted taking over when team struggled? | □ Created learning opportunity? | □ Communicated vision clearly?</p>
-                
-                <h3>Remember</h3>
-                <div class="alert-success">
-                    This transition is a journey. Setbacks are normal. What matters is recognizing them, learning from them, and course-correcting. Every week you practice leadership in you project manager role, it becomes more natural. You have the plan—now execute it.
-                </div>
+                <h2>📚 Quick Reference Guide</h2>
+                <div id="quickRefContent"></div>
             </div>
         </div>
         
-        <div style="text-align: center; margin: 3rem 0;">
-            <button class="btn btn-primary" onclick="exportData()">📥 Export</button>
-            <button class="btn btn-secondary" onclick="clearAllData()" style="margin-left: 1rem;">🔄 Reset</button>
+        <!-- ACTION BUTTONS -->
+        <div class="action-buttons">
+            <button class="btn btn-primary btn-small" onclick="exportData()">📥 Export Roadmap</button>
+            <button class="btn btn-primary btn-small" onclick="triggerImport()">📤 Import Roadmap</button>
+            <input type="file" id="importFile" accept=".json" style="display:none;" onchange="importData()">
+            <button class="btn btn-secondary btn-small" onclick="resetRoadmap()">🔄 Reset</button>
         </div>
     </div>
     
-    <div id="saveIndicator" class="save-indicator">✓ Saved</div>
+    <div id="saveIndicator" class="save-indicator">✓ Progress saved</div>
     
     <script>
-        function initializeApp() { loadData(); updateProgress(); }
+        // ============== COMPREHENSIVE GUIDANCE CONTENT DATABASE ==============
         
-        function calculateLevel() {
-            const score = parseInt(document.getElementById('totalScore').value) || 0;
-            if (score === 0) { document.getElementById('readinessLevel').value = ''; return; }
-            
-            let level = '';
-            if (score >= 45) level = 'Level 5: Optimized Leader';
-            else if (score >= 35) level = 'Level 4: Managed PM';
-            else if (score >= 25) level = 'Level 3: Defined PM';
-            else if (score >= 15) level = 'Level 2: Emerging Leader';
-            else level = 'Level 1: Technical Expert';
-            
-            document.getElementById('readinessLevel').value = level;
-            if (!localStorage.getItem('startDate')) {
-                localStorage.setItem('startDate', new Date().toISOString());
-                updateProgress();
+        const detailedGuidance = {
+            "level-1": {
+                name: "Foundational PM Thinker",
+                range: "10-19",
+                class: "level-1",
+                description: "You're beginning your PM journey. You may be an individual contributor learning how projects work, or you may be taking on your first PM-related responsibilities while building foundational skills. Your focus is understanding PM fundamentals and beginning to think strategically about outcomes.",
+                focusAreas: [
+                    { title: "PM Mindset", text: "Shift from task-focus to project-focus and outcomes" },
+                    { title: "Basic Coordination", text: "Support team alignment without formal authority" },
+                    { title: "Simple Tracking", text: "Know what's happening, by when, and why it matters" }
+                ],
+                weeks: [
+                    {
+                        weekNum: 1,
+                        phase: "Foundation",
+                        title: "Understand how projects work in your environment",
+                        goal: "See the bigger picture beyond your individual tasks",
+                        actions: [
+                            "Ask your manager: 'How do projects get managed here? What's my role?'",
+                            "Observe a project status meeting - note what topics matter and how decisions get made",
+                            "List 3 projects you're involved in and their key deadlines",
+                            "Identify one person on your team who 'gets things done' - understand their approach",
+                            "Create a simple calendar view of all your project commitments for the next 90 days"
+                        ],
+                        dailyPractice: "Spend 10 minutes understanding one project's status and timeline",
+                        successMetric: "You can describe 3 active projects, their goals, and deadlines to a colleague",
+                        coachingTip: "Projects aren't just tasks with deadlines. They're coordinated efforts toward an outcome. Start noticing the coordination."
+                    },
+                    {
+                        weekNum: 2,
+                        phase: "Foundation",
+                        title: "Know who depends on what from you",
+                        goal: "Understand your role in others' success",
+                        actions: [
+                            "Identify 5 people who depend on your work (manager, teammates, stakeholders, clients)",
+                            "For each: Write down one thing they need from you and when they need it",
+                            "Schedule brief conversations: 'What do you need from me to succeed this quarter?'",
+                            "Document the answers - these are your real priorities",
+                            "Share your availability and timeline with key people this week"
+                        ],
+                        dailyPractice: "Notice who asks you for something and what they actually need",
+                        successMetric: "You have a list of 5 dependencies with clear needs and timelines",
+                        coachingTip: "Your work doesn't exist in isolation. Understanding dependencies prevents firefighting and helps you deliver what matters."
+                    },
+                    {
+                        weekNum: 3,
+                        phase: "Foundation",
+                        title: "Start thinking like someone who coordinates",
+                        goal: "Practice delegating one task and seeing it through",
+                        actions: [
+                            "Take one task you're currently doing - break it into smaller steps",
+                            "Estimate how long each step takes and identify which steps someone else could do",
+                            "Choose ONE small task to delegate - clear, low-risk, straightforward (e.g., data compilation, report formatting)",
+                            "Prepare the delegation: What exactly? Why does it matter? When is it due? Who can they ask if stuck?",
+                            "Delegate it in writing (email or doc, not just verbal) and check in after 2 days",
+                            "Thank them when it's done and notice what you learned"
+                        ],
+                        dailyPractice: "Notice one task and think 'Who else could do this?'",
+                        successMetric: "One task delegated successfully and completed by someone else",
+                        coachingTip: "Delegation isn't giving people work you don't want. It's how things scale and people grow. Start small."
+                    },
+                    {
+                        weekNum: 4,
+                        phase: "Foundation",
+                        title: "Track what matters",
+                        goal: "Create a simple system for visibility and accountability",
+                        actions: [
+                            "Choose one simple tool (spreadsheet, Trello, Asana, or even a shared doc)",
+                            "List your top 5 projects/commitments and for each write: Goal, Deadline, Current Status, Next Step",
+                            "Set a recurring time to update (every Friday, 5 minutes) - this becomes your habit",
+                            "Share one status update with your manager or a stakeholder who needs to know",
+                            "Keep this list visible - refer to it daily when prioritizing work"
+                        ],
+                        dailyPractice: "Glance at your list and ask: 'What's the next important step I can take today?'",
+                        successMetric: "List created and updated weekly; you've shared status with manager",
+                        coachingTip: "Tracking isn't about being busy. It's about knowing what actually matters and moving it forward consistently."
+                    }
+                ],
+                warningsSigns: [
+                    "Focusing only on your own tasks, missing how they fit into larger project",
+                    "Not communicating about progress or blockers",
+                    "Forgetting deadlines or dependencies",
+                    "Waiting for someone else to coordinate or track"
+                ],
+                weeklyCheckInQuestions: [
+                    "Did I understand how my work supports others?",
+                    "Did I delegate or coordinate something?",
+                    "Did I update my simple tracking system?",
+                    "Did I notice something about how projects work?"
+                ]
+            },
+            "level-2": {
+                name: "Emerging PM Skillset",
+                range: "15-24",
+                class: "level-2",
+                description: "You manage parts of projects or coordinate across teams without having the PM title. You're doing project coordination work and learning to do it consistently.",
+                focusAreas: [
+                    { title: "Consistent Coordination", text: "Build regular communication and alignment rhythms" },
+                    { title: "Smart Delegation", text: "Delegate strategically to scale your impact" },
+                    { title: "Obstacle Navigation", text: "Remove blockers and keep momentum moving" }
+                ],
+                weeks: [
+                    {
+                        weekNum: 1,
+                        phase: "Foundation",
+                        title: "Assess what you're already doing that's project work",
+                        goal: "Recognize and own the coordination work you do",
+                        actions: [
+                            "Inventory 3 projects where you coordinate or support major work",
+                            "For each, list what you do: meetings, decisions, communications, problem-solving, status tracking",
+                            "Rate yourself 1-5 on: clarity (do people know what's expected?), frequency (how often do you communicate?), consistency (same day/time each week?)",
+                            "Ask 2 teammates or stakeholders: 'How am I doing as a coordinator?' - use your ratings as reference",
+                            "Compare their feedback to your self-rating - where's the gap?"
+                        ],
+                        dailyPractice: "Notice one coordination task you do that nobody officially calls 'project management'",
+                        successMetric: "Self-assessment complete, feedback from 2 people gathered, gaps identified",
+                        coachingTip: "You're probably doing more PM-like work than you realize. Naming it and owning it is where your growth starts."
+                    },
+                    {
+                        weekNum: 2,
+                        phase: "Foundation",
+                        title: "Build consistent communication rhythm",
+                        goal: "Create predictable communication patterns that stakeholders rely on",
+                        actions: [
+                            "For each project you coordinate: set recurring meeting/update times",
+                            "Minimum: Weekly team sync or status update, Weekly key stakeholder update",
+                            "Optional: Brief daily standup or Slack check-in if fast-moving",
+                            "Block calendar for 90 days - communicate the cadence to the team (always Tuesday 2pm, always Thursday email)",
+                            "Prepare simple agenda template: What's done? What's in progress? What's blocked? What decisions do we need? Any risks?",
+                            "Hold all recurring meetings this week and following weeks - be disciplined about it"
+                        ],
+                        dailyPractice: "Send one status update or ask one progress question",
+                        successMetric: "Recurring meetings scheduled for 90 days, team knows cadence, first week of meetings held",
+                        coachingTip: "Consistency matters more than perfection. A brief weekly sync beats urgent firefighting every day."
+                    },
+                    {
+                        weekNum: 3,
+                        phase: "Foundation",
+                        title: "Delegate strategically to yourself for what matters",
+                        goal: "Free up your time for strategic coordination work",
+                        actions: [
+                            "Look at each project: What are you doing that someone else could do?",
+                            "Prioritize: Which tasks, if delegated, would free up your strategic thinking time?",
+                            "Choose 2-3 tasks this week to delegate (not just busy work - things that help others grow)",
+                            "For each: Write clear expectations in writing (email, doc, tool - not just verbal)",
+                            "Include: What specifically? Why does it matter? When is it due? Who's the expert if they have questions?",
+                            "Follow up: 'How's it going? Need anything from me?'"
+                        ],
+                        dailyPractice: "Think: 'Would this task help someone else grow if I delegated it?'",
+                        successMetric: "2-3 tasks delegated with clear written expectations, first ones completed",
+                        coachingTip: "You're not delegating to avoid work. You're delegating to scale impact and develop others."
+                    },
+                    {
+                        weekNum: 4,
+                        phase: "Foundation",
+                        title: "Remove obstacles and maintain momentum",
+                        goal: "Keep projects moving by resolving blockers",
+                        actions: [
+                            "Ask each project team: 'What's slowing us down? What do you need that you don't have?'",
+                            "Document: Missing tools? Decisions from leadership? Clarification needed? Skill gaps? Process problems?",
+                            "Pick the top 2-3 blockers actually affecting progress",
+                            "For each: Identify who can solve it and what you need from them",
+                            "Create action plan: Meet with blocker owner, understand root cause, commit to when it's solved",
+                            "Track weekly: 'Blocker identified [date]. Action: [step]. Target resolution: [date]. Status: [update]'"
+                        ],
+                        dailyPractice: "Ask one person: 'Anything blocking you right now?'",
+                        successMetric: "2-3 blockers identified, action plan created, 1-2 in progress toward resolution",
+                        coachingTip: "The fastest way to deliver is to remove obstacles, not to work harder. Blockers are your priority."
+                    }
+                ],
+                warningsSigns: [
+                    "Inconsistent communication (meetings get skipped or rescheduled often)",
+                    "Doing all the work yourself instead of delegating",
+                    "Avoiding difficult conversations about blockers or delays",
+                    "Projects grinding to halt when you're busy"
+                ],
+                weeklyCheckInQuestions: [
+                    "Did I hold my recurring meetings this week?",
+                    "Did I delegate something strategic?",
+                    "Did I remove or advance on a blocker?",
+                    "Am I building consistency in my coordination?"
+                ]
+            },
+            "level-3": {
+                name: "Project Manager Ready",
+                range: "25-34",
+                class: "level-3",
+                description: "You're operating at PM level and are ready for official PM responsibilities. You may hold a Coordinator title now, but your capability is PM-capable. You're ready for the next step—whether promotion to PM, expanded responsibilities, or deepening impact in your current role.",
+                focusAreas: [
+                    { title: "Strategic Focus", text: "Reduce execution work and increase strategic project thinking" },
+                    { title: "Team Capability", text: "Build team capability; guide problem-solving vs. solving it yourself" },
+                    { title: "Stakeholder Alignment", text: "Manage expectations and influence across boundaries" }
+                ],
+                weeks: [
+                    {
+                        weekNum: 1,
+                        phase: "Foundation",
+                        title: "Reduce hands-on work and increase strategic focus",
+                        goal: "Shift from execution to coordination and planning",
+                        actions: [
+                            "Time audit (2-3 days): Track your time in 30-min increments - hands-on work, team coordination, strategic thinking, admin",
+                            "Analyze: What's your current allocation? Target: Execution 15%, Coordination 40%, Strategy 30%, Admin 15%",
+                            "Identify 5+ tasks you're still doing that a team member could own",
+                            "Create transition plan: 'Week 1: Delegate X to [person], Week 2: Y to [person]'",
+                            "Have conversations: 'I want to shift how I work. I need to hand off [X]. Can you own this? Here's why it matters.'"
+                        ],
+                        dailyPractice: "Notice when you're in execution mode. Ask: 'Is this the best use of my time?'",
+                        successMetric: "Time audit complete, 5+ delegation opportunities identified, first 2 delegations underway",
+                        coachingTip: "PMs scale through people, not through their own effort. Shift your focus accordingly."
+                    },
+                    {
+                        weekNum: 2,
+                        phase: "Foundation",
+                        title: "Set strategic direction for your projects",
+                        goal: "Define where projects are going and why it matters",
+                        actions: [
+                            "For each project/work stream: Define 3-6 month vision - Where will we be? What will have changed? What capabilities will we build?",
+                            "Identify 2-3 strategic priorities for next 90 days (not just 'complete deliverables' but 'build capability' or 'improve process')",
+                            "For each priority: Why it matters, success metrics, timeline, owner",
+                            "Share with: Your manager (alignment), Your team (direction), Key stakeholders (context)",
+                            "Get feedback: 'What am I missing? What matters most? Any conflicts I should know about?'"
+                        ],
+                        dailyPractice: "Spend 15 minutes thinking strategically about one project",
+                        successMetric: "3-6 month vision documented, 2-3 strategic priorities set, team and stakeholders aligned",
+                        coachingTip: "Strategy isn't extra work. It's clarity that makes every action count."
+                    },
+                    {
+                        weekNum: 3,
+                        phase: "Foundation",
+                        title: "Develop team capability (don't just deliver)",
+                        goal: "Build team strength while delivering projects",
+                        actions: [
+                            "Identify 1-2 team members ready to grow - What skill or exposure do they need?",
+                            "Create development plan: What capability? How will they develop it? Timeline? Success criteria?",
+                            "Assign meaningful work (not fake training): Lead a feature, own a workstream, cross-team exposure",
+                            "Start coaching: Explain the big picture, watch them plan, provide feedback, let them practice",
+                            "Check in weekly: 'How's it going? What are you learning? What do you need from me?'"
+                        ],
+                        dailyPractice: "Spend 15 min coaching or mentoring; notice growth happening",
+                        successMetric: "Development plan created and started for 1-2 people, growth work assigned",
+                        coachingTip: "Your job is to make your team strong. The best coordinators are measured by how strong their team becomes."
+                    },
+                    {
+                        weekNum: 4,
+                        phase: "Foundation",
+                        title: "Align stakeholders across organizational boundaries",
+                        goal: "Build relationships and manage expectations proactively",
+                        actions: [
+                            "Map stakeholders: Who influences your success? Who depends on you? Who could help or hurt?",
+                            "For 4-5 key stakeholders: Schedule 30-min conversations",
+                            "In each: Share your project priorities, ask 'How does my work impact you? What do you need?', listen for conflicts/dependencies",
+                            "Document: Their priorities, concerns, how you can support them",
+                            "Find 1-2 ways to help them succeed (this builds goodwill and influence)",
+                            "Establish communication plan: How will you keep them updated? Monthly? Email? Quarterly business review?"
+                        ],
+                        dailyPractice: "Reach out to one stakeholder - share an update or ask a question",
+                        successMetric: "Key stakeholders identified and understood, 1-2 support opportunities identified",
+                        coachingTip: "You influence through relationships and reputation, not just authority. Invest in both."
+                    }
+                ],
+                warningsSigns: [
+                    "Taking back delegated work prematurely",
+                    "Getting pulled into execution too often",
+                    "Inconsistent communication with stakeholders",
+                    "Missing strategic opportunities"
+                ],
+                weeklyCheckInQuestions: [
+                    "Did I spend time on strategic thinking, not just execution?",
+                    "Did I delegate high-impact work?",
+                    "Did I develop someone's capability?",
+                    "Did I strengthen a stakeholder relationship?"
+                ]
+            },
+            "level-4": {
+                name: "Project Manager Steady",
+                range: "35-44",
+                class: "level-4",
+                description: "You're strongly positioned as a PM. Focus on increasing delegation scope, deepening strategic impact, and mentoring team members.",
+                focusAreas: [
+                    { title: "Leadership Depth", text: "Mentor emerging PMs and develop team leaders" },
+                    { title: "Organizational Impact", text: "Drive PM excellence across your organization" },
+                    { title: "Sustainability", text: "Build systems and culture for long-term success" }
+                ],
+                weeks: [
+                    {
+                        weekNum: 1,
+                        title: "Mentor Emerging Leaders",
+                        goal: "Identify and develop the next generation",
+                        actions: [
+                            "Identify 1-2 high-potential team members for emerging leadership",
+                            "Create mentoring plan - What leadership skills? How to develop? Timeline?",
+                            "Have mentoring conversations - Share frameworks, expose to decisions, provide feedback",
+                            "Delegate leadership opportunities - Lead a project, represent in meeting, solve cross-team issue",
+                            "Track their growth and celebrate progress"
+                        ],
+                        dailyPractice: "Spend 15 min mentoring an emerging leader",
+                        successMetric: "Mentoring plan created, 1+ leadership opportunities given",
+                        coachingTip: "Your legacy is the leaders you develop, not the projects you complete."
+                    },
+                    {
+                        weekNum: 2,
+                        title: "Build Organizational PM Excellence",
+                        goal: "Share PM practices across organization",
+                        actions: [
+                            "Audit your PM practices - What's working well? What could others learn from?",
+                            "Document your best practices - Templates, processes, frameworks",
+                            "Share in org forums - Present at meetings, write documentation, mentor other PMs",
+                            "Identify where org PM practices are weak and help improve",
+                            "Build PM community - Connect PMs, share learning, celebrate wins"
+                        ],
+                        dailyPractice: "Share one PM insight or best practice",
+                        successMetric: "Best practices documented and shared, org PM improved",
+                        coachingTip: "You're not just a PM. You're a PM who helps others become great PMs."
+                    },
+                    {
+                        weekNum: 3,
+                        title: "Plan for Sustainability",
+                        goal: "Build systems for long-term success",
+                        actions: [
+                            "Assess what's working and what's sustainable",
+                            "Identify scaling needs - Where are bottlenecks? What processes need documentation? Who needs more authority?",
+                            "Plan for next phase - Structure changes? New roles? Process improvements? Resource needs?",
+                            "Prepare team for scaling - Communicate why, get input, identify emerging leaders",
+                            "Prepare yourself - What skills do you need? What will you delegate? How will you stay connected?"
+                        ],
+                        dailyPractice: "Think about scaling and document key processes",
+                        successMetric: "Scaling plan created, team prepared, emerging leaders identified",
+                        coachingTip: "Growth requires intentional planning. Plan for success."
+                    },
+                    {
+                        weekNum: 4,
+                        title: "Gather 360 Feedback",
+                        goal: "Understand your impact and adjust",
+                        actions: [
+                            "Self-reflection - Rate yourself 1-10 on PM growth, what surprised you, what's hardest, what's rewarding",
+                            "Gather 360 feedback - From team: 'How am I leading?' From manager, peers, stakeholders",
+                            "Analyze patterns - Where's consistent positive? Where's consistent challenge? What's your blind spot?",
+                            "Plan adjustments - Continue what's working, intensify on challenges, set new goals",
+                            "Document lessons and celebrate progress"
+                        ],
+                        dailyPractice: "Reflect on your PM journey and impact",
+                        successMetric: "360 feedback gathered, patterns identified, Month 2 plan created",
+                        coachingTip: "Feedback is a gift. The most successful leaders actively seek it."
+                    }
+                ],
+                warningsSigns: [
+                    "Stopping mentorship of emerging leaders",
+                    "Not documenting processes and lessons",
+                    "Missing organizational PM opportunities",
+                    "Losing focus on long-term strategy"
+                ],
+                weeklyCheckInQuestions: [
+                    "Did I mentor someone this week?",
+                    "Did I share a best practice?",
+                    "Did I think about sustainability?",
+                    "Did I strengthen the PM community?"
+                ]
+            },
+            "level-5": {
+                name: "Project Leader",
+                range: "45-50",
+                class: "level-5",
+                description: "You consistently operate like a PM with strong focus on outcomes, delegation, and leadership. Your focus is on mentoring others and driving organizational PM excellence.",
+                focusAreas: [
+                    { title: "Leadership Depth", text: "Mentor emerging PMs and develop team leaders" },
+                    { title: "Organizational Impact", text: "Drive PM excellence across your organization" },
+                    { title: "Sustainability", text: "Build systems and culture for long-term success" }
+                ],
+                weeks: [
+                    {
+                        weekNum: 1,
+                        title: "Shape Organizational Culture",
+                        goal: "Create PM leadership culture",
+                        actions: [
+                            "Vision: Define what PM excellence looks like in your org",
+                            "Lead by example - Model PM behaviors consistently",
+                            "Connect emerging PMs - Build community, share learning",
+                            "Recognize and celebrate PM wins across org",
+                            "Sponsor PM development initiatives"
+                        ],
+                        dailyPractice: "Demonstrate or recognize excellent PM behavior",
+                        successMetric: "PM culture vision articulated and demonstrated",
+                        coachingTip: "Culture is created through consistent behavior and intentional choices. Model excellence."
+                    },
+                    {
+                        weekNum: 2,
+                        title: "Develop PM Leaders Pipeline",
+                        goal: "Create systematic leadership development",
+                        actions: [
+                            "Identify 3-5 PMs with leadership potential across org",
+                            "Create structured development program - Mentoring, exposure, projects, feedback",
+                            "Align with org leadership on succession planning",
+                            "Create opportunities for high-potential PMs to lead",
+                            "Track pipeline and celebrate advancement"
+                        ],
+                        dailyPractice: "Mentor an emerging PM leader",
+                        successMetric: "Leadership pipeline created, development underway",
+                        coachingTip: "Your greatest legacy is the leaders you develop."
+                    },
+                    {
+                        weekNum: 3,
+                        title: "Drive Organizational Transformation",
+                        goal: "Lead strategic PM initiatives",
+                        actions: [
+                            "Identify where PM practices impact org success most",
+                            "Design transformation initiative - Goals, approach, timeline, resources",
+                            "Build coalition of support from leadership and PMs",
+                            "Execute initiative - Implement, monitor, adjust",
+                            "Document impact and lessons for organizational learning"
+                        ],
+                        dailyPractice: "Work on one strategic PM initiative",
+                        successMetric: "Transformation initiative launched and progressing",
+                        coachingTip: "You're not just leading your team anymore. You're leading the organization's PM evolution."
+                    },
+                    {
+                        weekNum: 4,
+                        title: "Plan Your Leadership Legacy",
+                        goal: "Ensure PM excellence outlasts you",
+                        actions: [
+                            "Reflect - What has been your impact as a PM leader?",
+                            "Document - What PM practices, frameworks, principles should persist?",
+                            "Institutionalize - Create systems, documentation, mentoring that will outlast you",
+                            "Plan succession - Who will carry forward your vision?",
+                            "Celebrate - Recognize the journey and the team that made it possible"
+                        ],
+                        dailyPractice: "Reflect on your leadership journey and impact",
+                        successMetric: "Legacy vision clarified, succession plan created",
+                        coachingTip: "The best leaders invest in systems and people that outlast them."
+                    }
+                ],
+                warningsSigns: [
+                    "Stopping mentorship of emerging leaders",
+                    "Losing sight of organizational impact",
+                    "Not documenting leadership lessons",
+                    "Becoming isolated from PM community"
+                ],
+                weeklyCheckInQuestions: [
+                    "Did I mentor an emerging PM leader?",
+                    "Did I advance organizational PM excellence?",
+                    "Did I demonstrate PM leadership?",
+                    "Did I think about my leadership legacy?"
+                ]
             }
-            saveData();
+        };
+        
+        // Helper functions
+        function getLevel(score) {
+            if (score >= 45) return "level-5";
+            if (score >= 35) return "level-4";
+            if (score >= 25) return "level-3";
+            if (score >= 15) return "level-2";
+            return "level-1";
+        }
+        
+        function generateRoadmap() {
+            const score = parseInt(document.getElementById('scoreInput').value);
+            
+            if (!score || score < 10 || score > 50) {
+                alert('Please enter a score between 10 and 50.');
+                return;
+            }
+            
+            localStorage.setItem('pmScore', score);
+            displayResults(score);
+            populateMonthPlans(score);
+            populateQuickReference(score);
+            showSection('results');
+            showSaveIndicator();
+        }
+        
+        function displayResults(score) {
+            const level = getLevel(score);
+            const guidance = detailedGuidance[level];
+            
+            document.getElementById('scoreDisplay').textContent = score;
+            document.getElementById('levelDisplay').innerHTML = 
+                `<span class="level-badge ${guidance.class}">Level ${guidance.range}: ${guidance.name}</span>`;
+            document.getElementById('levelDescription').innerHTML = `<p>${guidance.description}</p>`;
+            
+            let areasHTML = '';
+            guidance.focusAreas.forEach((area, idx) => {
+                areasHTML += `
+                    <div class="focus-area-box">
+                        <strong>${idx + 1}. ${area.title}</strong>
+                        <p>${area.text}</p>
+                    </div>
+                `;
+            });
+            document.getElementById('focusAreasDisplay').innerHTML = areasHTML;
+        }
+        
+        function populateMonthPlans(score) {
+            // ALL MONTHS populated immediately after user generates roadmap
+            // Days 1-30 (Weeks 1-4), Days 31-60 (Weeks 5-8), Days 61-90 (Weeks 9-13)
+            
+            const level = getLevel(score);
+            const guidance = detailedGuidance[level];
+            
+            // MONTH 1: Days 1-30 (Weeks 1-4) - All rendered immediately
+            let month1HTML = '';
+            guidance.weeks.slice(0, 4).forEach(week => {
+                month1HTML += renderWeekContent(week);
+            });
+            document.getElementById('month1Content').innerHTML = month1HTML;
+            
+            // MONTH 2: Days 31-60 (Weeks 5-8) - Extended to full 13 weeks, showing weeks 5-8
+            let month2HTML = '';
+            const weeks5to8 = extendWeeks(guidance, 5, 8);
+            weeks5to8.forEach(week => {
+                month2HTML += renderWeekContent(week);
+            });
+            document.getElementById('month2Content').innerHTML = month2HTML;
+            
+            // MONTH 3: Days 61-90 (Weeks 9-13) - Extended to full 13 weeks, showing weeks 9-13
+            let month3HTML = '';
+            const weeks9to13 = extendWeeks(guidance, 9, 13);
+            weeks9to13.forEach(week => {
+                month3HTML += renderWeekContent(week);
+            });
+            document.getElementById('month3Content').innerHTML = month3HTML;
+        }
+        
+        function renderWeekContent(week) {
+            return `
+                <div class="week-content">
+                    <h3>Week ${week.weekNum}: ${week.phase ? week.phase + ' Phase' : 'Growth'}</h3>
+                    <p><strong>Focus:</strong> ${week.title}</p>
+                    <p><strong>Goal:</strong> ${week.goal}</p>
+                    <p><strong>Actions:</strong></p>
+                    <ul>
+                        ${week.actions.map(action => `<li>${action}</li>`).join('')}
+                    </ul>
+                    <p><strong>Daily Practice:</strong> ${week.dailyPractice}</p>
+                    <p><strong>Success Metric:</strong> ${week.successMetric}</p>
+                    <p><strong>💡 Take Action Tip:</strong> ${week.coachingTip}</p>
+                </div>
+            `;
+        }
+        
+        function extendWeeks(guidance, startWeek, endWeek) {
+            // Generate weeks 5-13 by extending pattern from existing weeks
+            const weeks = [];
+            const existingCount = guidance.weeks.length;
+            
+            for (let i = startWeek; i <= endWeek; i++) {
+                if (i - 1 < existingCount) {
+                    // Use actual week if it exists
+                    weeks.push(guidance.weeks[i - 1]);
+                } else {
+                    // Generate extended week following structure
+                    // When full content is available, replace with actual data
+                    weeks.push({
+                        weekNum: i,
+                        title: `Week ${i}: ${generateWeekTitle(guidance, i)}`,
+                        goal: `Continue developing your PM capabilities in Month ${Math.ceil(i / 4)}`,
+                        actions: [
+                            `Deepen focus on your primary development area from this week's theme`,
+                            `Continue practicing the habit from Week ${i - 4 > 0 ? i - 4 : i}`,
+                            `Implement feedback from your stakeholders and team`,
+                            `Document progress toward your Month ${Math.ceil(i / 4)} milestones`
+                        ],
+                        dailyPractice: `Spend 15 minutes on structured PM development activity for this week's focus`,
+                        successMetric: `Week ${i} learning goals achieved and documented for reflection`,
+                        coachingTip: `Continued consistency builds momentum. Focus on incremental progress, not perfection.`
+                    });
+                }
+            }
+            return weeks;
+        }
+        
+        function generateWeekTitle(guidance, weekNum) {
+            // Generate contextual week titles based on progression
+            const level = guidance.name;
+            const month = Math.ceil(weekNum / 4);
+            
+            if (weekNum <= 4) return "Foundation";
+            if (weekNum <= 8) return "Development";
+            if (weekNum <= 13) return "Refinement";
+            return "Growth";
+        }
+        
+        function populateQuickReference(score) {
+            const level = getLevel(score);
+            const guidance = detailedGuidance[level];
+            
+            let quickRefHTML = `
+                <h3>Your Focus Areas (Reminder)</h3>
+                <div style="margin-bottom: 2rem;">
+                    ${guidance.focusAreas.map((area, idx) => `
+                        <div class="focus-area-box">
+                            <strong>${idx + 1}. ${area.title}</strong>
+                            <p>${area.text}</p>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <h3>⚠️ Warning Signs for Your Readiness Level</h3>
+                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                    ${guidance.warningsSigns.map(sign => `<li>${sign}</li>`).join('')}
+                </ul>
+                
+                <h3>✓ Weekly Check-In Questions (Every Friday)</h3>
+                <ul class="checklist" style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                    ${guidance.weeklyCheckInQuestions.map(q => `
+                        <li style="margin-bottom: 0.75rem;">
+                            <label><input type="checkbox"> ${q}</label>
+                        </li>
+                    `).join('')}
+                </ul>
+                
+                <div class="alert alert-success" style="margin-top: 2rem;">
+                    <strong>Remember:</strong> Your 90-day roadmap is personalized to your readiness level. 
+                    Review it weekly and celebrate small wins. You're building the leadership skills that will define your PM career!
+                </div>
+            `;
+            
+            document.getElementById('quickRefContent').innerHTML = quickRefHTML;
         }
         
         function showSection(sectionId) {
@@ -606,55 +1037,99 @@
             event.target.classList.add('active');
         }
         
-        function updateProgress() {
-            const startDate = localStorage.getItem('startDate');
-            if (!startDate) return;
-            const start = new Date(startDate);
-            const now = new Date();
-            const daysPassed = Math.floor((now - start) / (1000 * 60 * 60 * 24));
-            const daysElapsed = Math.min(daysPassed, 90);
-            const percentComplete = Math.round((daysElapsed / 90) * 100);
-            document.getElementById('dayCounter').textContent = `Day ${daysElapsed} of 90`;
-            document.getElementById('progressPercent').textContent = `${percentComplete}%`;
-            document.getElementById('progressFill').style.width = `${percentComplete}%`;
-        }
-        
-        async function saveData() {
-            const data = {};
-            document.querySelectorAll('input, textarea').forEach(el => {
-                if (el.id) data[el.id] = el.type === 'checkbox' ? el.checked : el.value;
-            });
-            try {
-                await window.storage.set('pm-roadmap', JSON.stringify(data));
-                showSaveIndicator();
-            } catch (error) {
-                localStorage.setItem('pmRoadmap', JSON.stringify(data));
-                showSaveIndicator();
+        function exportData() {
+            // EXPORT FORMAT: JSON
+            // File includes score, level, focus areas, timestamp, and full roadmap data
+            const score = localStorage.getItem('pmScore');
+            if (!score) {
+                alert('Generate your roadmap first!');
+                return;
             }
-        }
-        
-        async function loadData() {
-            try {
-                const result = await window.storage.get('pm-roadmap');
-                const data = result ? JSON.parse(result.value) : null;
-                if (!data) {
-                    const localData = localStorage.getItem('pmRoadmap');
-                    if (localData) restoreData(JSON.parse(localData));
-                    return;
+            
+            const level = getLevel(parseInt(score));
+            const guidance = detailedGuidance[level];
+            
+            // Create comprehensive export object
+            const exportData = {
+                exportFormat: "JSON",
+                exportVersion: "1.0",
+                exportDate: new Date().toISOString(),
+                student: {
+                    score: parseInt(score),
+                    readinessLevel: level,
+                    levelName: guidance.name,
+                    levelRange: guidance.range
+                },
+                focusAreas: guidance.focusAreas.map(area => ({
+                    title: area.title,
+                    description: area.text
+                })),
+                roadmap: {
+                    month1: {
+                        title: "Days 1-30: Foundation Phase",
+                        weeks: guidance.weeks.slice(0, 4)
+                    },
+                    month2: {
+                        title: "Days 31-60: Development Phase",
+                        weeks: extendWeeks(guidance, 5, 8)
+                    },
+                    month3: {
+                        title: "Days 61-90: Refinement Phase",
+                        weeks: extendWeeks(guidance, 9, 13)
+                    }
+                },
+                quickReference: {
+                    warningsSigns: guidance.warningsSigns,
+                    weeklyCheckInQuestions: guidance.weeklyCheckInQuestions
                 }
-                restoreData(data);
-            } catch (error) {
-                const localData = localStorage.getItem('pmRoadmap');
-                if (localData) restoreData(JSON.parse(localData));
-            }
+            };
+            
+            // Download JSON file
+            const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `90day-roadmap-level-${guidance.range}-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showSaveIndicator();
         }
         
-        function restoreData(data) {
-            Object.keys(data).forEach(key => {
-                const el = document.getElementById(key);
-                if (el) el.type === 'checkbox' ? el.checked = data[key] : el.value = data[key];
-            });
-            if (data.totalScore) calculateLevel();
+        function triggerImport() {
+            document.getElementById('importFile').click();
+        }
+        
+        function importData() {
+            const file = document.getElementById('importFile').files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    if (data.student && data.student.score) {
+                        const score = data.student.score;
+                        localStorage.setItem('pmScore', score);
+                        document.getElementById('scoreInput').value = score;
+                        displayResults(score);
+                        populateMonthPlans(score);
+                        populateQuickReference(score);
+                        showSaveIndicator();
+                        showSection('results');
+                    }
+                } catch (error) {
+                    alert('Invalid JSON file. Please select a valid roadmap backup exported from this application.');
+                }
+            };
+            reader.readAsText(file);
+        }
+        
+        function resetRoadmap() {
+            if (confirm('Reset your roadmap? This will delete all saved data.')) {
+                localStorage.clear();
+                document.getElementById('importFile').value = '';
+                location.reload();
+            }
         }
         
         function showSaveIndicator() {
@@ -663,27 +1138,16 @@
             setTimeout(() => indicator.classList.remove('show'), 2000);
         }
         
-        function exportData() {
-            const data = localStorage.getItem('pmRoadmap');
-            if (!data) { alert('No data to export!'); return; }
-            const blob = new Blob([data], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `90-day-${new Date().toISOString().split('T')[0]}.json`;
-            a.click();
-        }
-        
-        async function clearAllData() {
-            if (confirm('Reset ALL data? Cannot be undone.')) {
-                try { await window.storage.delete('pm-roadmap'); } catch (error) {}
-                localStorage.clear();
-                location.reload();
+        // Load on startup
+        window.addEventListener('load', () => {
+            const score = localStorage.getItem('pmScore');
+            if (score) {
+                document.getElementById('scoreInput').value = score;
+                displayResults(parseInt(score));
+                populateMonthPlans(parseInt(score));
+                populateQuickReference(parseInt(score));
             }
-        }
-        
-        initializeApp();
-        setInterval(updateProgress, 3600000);
+        });
     </script>
 </body>
 </html>

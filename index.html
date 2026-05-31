@@ -56,11 +56,6 @@
             margin-bottom: 0.5rem;
         }
         
-        .tagline {
-            opacity: 0.9;
-            font-size: 1.1rem;
-        }
-        
         .container {
             max-width: 1200px;
             margin: 2rem auto;
@@ -131,9 +126,7 @@
             color: var(--secondary);
         }
         
-        input[type="text"],
-        input[type="number"],
-        textarea {
+        input[type="number"] {
             width: 100%;
             padding: 0.75rem;
             border: 2px solid var(--border);
@@ -143,8 +136,7 @@
             transition: border-color 0.3s ease;
         }
         
-        input:focus,
-        textarea:focus {
+        input:focus {
             outline: none;
             border-color: var(--primary-light);
         }
@@ -253,7 +245,7 @@
             transform: translateY(0);
         }
         
-        .week-content {
+        .month-content {
             background: var(--bg);
             padding: 1.5rem;
             margin-bottom: 1.5rem;
@@ -261,21 +253,21 @@
             border-left: 4px solid var(--primary-light);
         }
         
-        .week-content h3 {
+        .month-content h3 {
             color: var(--primary);
             margin-bottom: 0.75rem;
         }
         
-        .week-content p {
+        .month-content p {
             margin-bottom: 1rem;
         }
         
-        .week-content ul {
+        .month-content ul {
             margin-left: 1.5rem;
             margin-bottom: 1rem;
         }
         
-        .week-content li {
+        .month-content li {
             margin-bottom: 0.5rem;
         }
         
@@ -307,9 +299,9 @@
         <div class="nav-tabs">
             <div class="nav-tab active" onclick="showSection('score')">Your Score</div>
             <div class="nav-tab" onclick="showSection('results')" id="tab-results">Results</div>
-            <div class="nav-tab" onclick="showSection('month1')" id="tab-month1">Days 1-30</div>
-            <div class="nav-tab" onclick="showSection('month2')" id="tab-month2">Days 31-60</div>
-            <div class="nav-tab" onclick="showSection('month3')" id="tab-month3">Days 61-90</div>
+            <div class="nav-tab" onclick="showSection('month1')" id="tab-month1">Month 1</div>
+            <div class="nav-tab" onclick="showSection('month2')" id="tab-month2">Month 2</div>
+            <div class="nav-tab" onclick="showSection('month3')" id="tab-month3">Month 3</div>
             <div class="nav-tab" onclick="showSection('quickref')" id="tab-quickref">Quick Ref</div>
         </div>
         
@@ -353,35 +345,31 @@
                 <div id="focusAreasDisplay" style="margin-top: 1rem;"></div>
                 
                 <div class="alert alert-success" style="margin-top: 2rem;">
-                    ✅ Your complete 90-day roadmap is ready! All 13 weeks are now available in the Days 1-30, Days 31-60, and Days 61-90 tabs.
-                    You can review each week, download your roadmap as a backup, or start working through Week 1 immediately.
+                    ✅ Your complete 3-month roadmap is ready! Review each month to understand your journey from your current readiness level toward PM excellence.
                 </div>
             </div>
         </div>
         
-        <!-- MONTH 1 SECTION: Days 1-30 (Weeks 1-4) -->
+        <!-- MONTH 1 SECTION -->
         <div id="month1" class="section hidden">
             <div class="card">
-                <h2>📅 Days 1-30: Foundation Phase (Weeks 1-4)</h2>
-                <p style="margin-bottom: 1.5rem;">Build the core PM habits and systems tailored to your focus areas.</p>
+                <h2 id="month1Title">📅 Month 1</h2>
                 <div id="month1Content"></div>
             </div>
         </div>
         
-        <!-- MONTH 2 SECTION: Days 31-60 (Weeks 5-8) -->
+        <!-- MONTH 2 SECTION -->
         <div id="month2" class="section hidden">
             <div class="card">
-                <h2>📈 Days 31-60: Development Phase (Weeks 5-8)</h2>
-                <p style="margin-bottom: 1.5rem;">Deepen your PM capabilities focused on your priority areas.</p>
+                <h2 id="month2Title">📅 Month 2</h2>
                 <div id="month2Content"></div>
             </div>
         </div>
         
-        <!-- MONTH 3 SECTION: Days 61-90 (Weeks 9-13) -->
+        <!-- MONTH 3 SECTION -->
         <div id="month3" class="section hidden">
             <div class="card">
-                <h2>🎯 Days 61-90: Refinement Phase (Weeks 9-13)</h2>
-                <p style="margin-bottom: 1.5rem;">Establish sustainable PM practices and consolidate your growth.</p>
+                <h2 id="month3Title">📅 Month 3</h2>
                 <div id="month3Content"></div>
             </div>
         </div>
@@ -404,9 +392,9 @@
     <div id="saveIndicator" class="save-indicator">✓ Progress saved</div>
     
     <script>
-        // ============== COMPREHENSIVE GUIDANCE CONTENT DATABASE ==============
+        // ============== 3-MONTH CONSOLIDATED GUIDANCE DATABASE ==============
         
-        const detailedGuidance = {
+        const monthlyGuidance = {
             "level-1": {
                 name: "Foundational PM Thinker",
                 range: "10-14",
@@ -417,84 +405,157 @@
                     { title: "Basic Coordination", text: "Support team alignment without formal authority" },
                     { title: "Simple Tracking", text: "Know what's happening, by when, and why it matters" }
                 ],
-                weeks: [
+                months: [
                     {
-                        weekNum: 1,
+                        monthNum: 1,
+                        monthTitle: "Foundation: Understand Your PM Context",
                         phase: "Foundation",
-                        title: "Understand how projects work in your environment",
-                        goal: "See the bigger picture beyond your individual tasks",
-                        actions: [
-                            "Ask your manager: 'How do projects get managed here? What's my role?'",
-                            "Observe a project status meeting - note what topics matter and how decisions get made",
-                            "List 3 projects you're involved in and their key deadlines",
-                            "Identify one person on your team who 'gets things done' - understand their approach",
-                            "Create a simple calendar view of all your project commitments for the next 90 days"
+                        monthGoal: "Build awareness of how projects work in your organization and your role in project success",
+                        guidance: "This month focuses on developing PM consciousness. You'll learn to see beyond your individual tasks to understand how projects work, who depends on what, and how decisions get made. Shift your mental model from 'What do I need to do?' to 'What outcomes do we need to achieve?'",
+                        quickTip: "Start with listening, not talking. This month, your job is to understand, not contribute. Attend meetings as an observer first. Ask good questions. Write down patterns you notice. Resist the urge to fix things—that comes later.",
+                        weeklyFocus: [
+                            {
+                                week: "1-2",
+                                focus: "Understand project context",
+                                actions: [
+                                    "Attend or observe 2-3 project status meetings and note: who's in the room, what decisions get made, what matters",
+                                    "Ask your manager: 'How are projects managed here? What makes some succeed and others struggle?'",
+                                    "List 3 projects you're involved in: their goals, stakeholders, key deadlines, outcomes",
+                                    "Identify one 'natural PM' on your team - observe how they think and operate",
+                                    "Document: 'What is a project?' vs 'What is a task?' with 2-3 examples from your work"
+                                ]
+                            },
+                            {
+                                week: "3-4",
+                                focus: "Map your dependencies",
+                                actions: [
+                                    "List 5 people who depend on your work (manager, teammates, clients, cross-functional partners)",
+                                    "For each: Document what they need, when they need it, and why it matters to them",
+                                    "Ask 3 people: 'What do you need from me to succeed this quarter?'",
+                                    "Create simple dependency map showing who needs what from you",
+                                    "Schedule calendar time for key dependencies (make commitments visible)",
+                                    "Share your availability and key deadlines with stakeholders"
+                                ]
+                            }
                         ],
-                        dailyPractice: "Spend 10 minutes understanding one project's status and timeline",
-                        successMetric: "You can describe 3 active projects, their goals, and deadlines to a colleague",
-                        coachingTip: "Projects aren't just tasks with deadlines. They're coordinated efforts toward an outcome. Start noticing the coordination."
+                        consolidatedActions: [
+                            "Map 3 active projects with goals, stakeholders, and timelines",
+                            "Understand dependencies: Who needs what from you? When? Why?",
+                            "Observe how PM decisions get made in your organization",
+                            "Shift thinking: Notice outcomes, not just activities",
+                            "Document your role in project success"
+                        ],
+                        dailyPractice: "Spend 10 minutes observing: How does work get coordinated? Who coordinates? What matters?",
+                        monthlyOutcome: "You can describe 3 active projects, 5 key dependencies, and how PM works in your org. You've shifted from pure task focus to noticing project context.",
+                        monthlyTips: [
+                            "Projects aren't just tasks with deadlines—they're coordinated efforts toward outcomes",
+                            "Your understanding starts with listening and observing, not doing",
+                            "Study natural coordinators—learn how they think"
+                        ],
+                        warningSign: "Still thinking only about individual tasks without seeing the bigger project picture"
                     },
                     {
-                        weekNum: 2,
+                        monthNum: 2,
+                        monthTitle: "Building Basic: Start Coordinating and Communicating",
                         phase: "Foundation",
-                        title: "Know who depends on what from you",
-                        goal: "Understand your role in others' success",
-                        actions: [
-                            "Identify 5 people who depend on your work (manager, teammates, stakeholders, clients)",
-                            "For each: Write down one thing they need from you and when they need it",
-                            "Schedule brief conversations: 'What do you need from me to succeed this quarter?'",
-                            "Document the answers - these are your real priorities",
-                            "Share your availability and timeline with key people this week"
+                        monthGoal: "Take on simple coordination responsibilities and establish basic communication patterns",
+                        guidance: "Month 2 moves from observation to practice. You'll start coordinating work and communicating about it. This month introduces delegation—not avoiding work, but getting things done through others. You'll establish rhythm and accountability through simple tracking.",
+                        quickTip: "Start with one delegation and one weekly meeting. Small, consistent actions build credibility. Pick one task you do regularly that someone else could learn. Delegate it with clear written expectations. Celebrate when they succeed. That's your proof of concept.",
+                        weeklyFocus: [
+                            {
+                                week: "5-6",
+                                focus: "Practice delegating one thing",
+                                actions: [
+                                    "Choose one task you currently do (data compilation, formatting, entry—something concrete)",
+                                    "Break it into steps and estimate time for each",
+                                    "Identify who could do this (capacity and ability to learn)",
+                                    "Prepare delegation: Written instructions, success criteria, deadline, contact for help, check-in plan",
+                                    "Delegate in writing (email, doc, or task system—not just verbal)",
+                                    "Check in after 2-3 days: 'How's it going? Any blockers?'",
+                                    "Thank them explicitly and describe what you learned"
+                                ]
+                            },
+                            {
+                                week: "7-8",
+                                focus: "Establish communication rhythm",
+                                actions: [
+                                    "For 1-2 projects: Set recurring weekly sync or status update time",
+                                    "Create simple cadence: Weekly team sync, Weekly stakeholder update",
+                                    "Draft status template: Done? In progress? Blocked? Decisions needed? Risks?",
+                                    "Hold first week of meetings and communicate the cadence to team",
+                                    "Get feedback: 'Is this helpful? What else do you need?' Adjust accordingly",
+                                    "Create simple tracking: 3-column tracker (To Do, In Progress, Done) with 5 key items"
+                                ]
+                            }
                         ],
-                        dailyPractice: "Notice who asks you for something and what they actually need",
-                        successMetric: "You have a list of 5 dependencies with clear needs and timelines",
-                        coachingTip: "Your work doesn't exist in isolation. Understanding dependencies prevents firefighting and helps you deliver what matters."
+                        consolidatedActions: [
+                            "Delegate 1-2 concrete tasks with clear expectations (written)",
+                            "Establish recurring communication (weekly meeting or update)",
+                            "Create simple status template and use it consistently",
+                            "Track 5+ active work items in visible format",
+                            "Get feedback on your coordination and adjust"
+                        ],
+                        dailyPractice: "Spend 10 minutes on coordination: Update status, check on delegated task, communicate blockers",
+                        monthlyOutcome: "You've successfully delegated at least one task. You're holding 1-2 recurring syncs and sharing status weekly. Stakeholders know what's happening.",
+                        monthlyTips: [
+                            "Delegation scales impact—it's the core PM skill",
+                            "Consistency beats perfection—a weekly 15-min sync beats no communication",
+                            "Simple tracking (spreadsheet is fine) creates clarity and accountability",
+                            "Write things down—verbal communication disappears; written sticks"
+                        ],
+                        warningSign: "Doing all work yourself instead of delegating; communication is sporadic or only happens when problems arise"
                     },
                     {
-                        weekNum: 3,
+                        monthNum: 3,
+                        monthTitle: "Sustaining: Create Systems and Habits",
                         phase: "Foundation",
-                        title: "Start thinking like someone who coordinates",
-                        goal: "Practice delegating one task and seeing it through",
-                        actions: [
-                            "Take one task you're currently doing - break it into smaller steps",
-                            "Estimate how long each step takes and identify which steps someone else could do",
-                            "Choose ONE small task to delegate - clear, low-risk, straightforward (e.g., data compilation, report formatting)",
-                            "Prepare the delegation: What exactly? Why does it matter? When is it due? Who can they ask if stuck?",
-                            "Delegate it in writing (email or doc, not just verbal) and check in after 2 days",
-                            "Thank them when it's done and notice what you learned"
+                        monthGoal: "Establish sustainable PM habits and simple systems that will serve as foundation for continued growth",
+                        guidance: "Month 3 solidifies your learning into habits and systems. Move from 'doing PM things' to 'having PM systems.' You're not just delegating one task—you have a delegation mindset. You're not attending one status meeting—you have communication rhythm. By month end, you have foundational systems that will scale.",
+                        quickTip: "Build for consistency, not perfection. Your Friday 15-minute review is more valuable than ad-hoc excellence. Your simple spreadsheet tracker is better than no tracking. Systems win over heroic effort. Make it so easy you can't skip it.",
+                        weeklyFocus: [
+                            {
+                                week: "9-10",
+                                focus: "Build your personal PM system",
+                                actions: [
+                                    "Choose your tracking tool: Spreadsheet, Trello, Asana, shared doc (consistency matters more than tool)",
+                                    "List your top 5 responsibilities: For each, goal, success criteria, deadline, current status",
+                                    "Add 1-2 key project commitments: What are you responsible for? What's the outcome?",
+                                    "Set weekly review time: Friday 4pm, 15 minutes—review what happened, plan next week",
+                                    "Share your system with manager: 'Here's what I track and how I stay on top of it'",
+                                    "Use it every day: Check status, add updates, reference when prioritizing"
+                                ]
+                            },
+                            {
+                                week: "11-13",
+                                focus: "Reflect and adjust",
+                                actions: [
+                                    "Review Month 1-2: What went well? What was hard? What surprised you?",
+                                    "Get feedback from 2 people: 'How am I doing? What should I keep doing? What should I change?'",
+                                    "Assess your habits: Are meetings happening? Are you delegating regularly? Is tracking being used?",
+                                    "Adjust what's not working: Explicitly stop, start, continue—be intentional",
+                                    "Document your learning: How you've changed as a PM thinker, your next challenges",
+                                    "Set goals for next quarter: How will you keep growing? What's your next focus?"
+                                ]
+                            }
                         ],
-                        dailyPractice: "Notice one task and think 'Who else could do this?'",
-                        successMetric: "One task delegated successfully and completed by someone else",
-                        coachingTip: "Delegation isn't giving people work you don't want. It's how things scale and people grow. Start small."
-                    },
-                    {
-                        weekNum: 4,
-                        phase: "Foundation",
-                        title: "Track what matters",
-                        goal: "Create a simple system for visibility and accountability",
-                        actions: [
-                            "Choose one simple tool (spreadsheet, Trello, Asana, or even a shared doc)",
-                            "List your top 5 projects/commitments and for each write: Goal, Deadline, Current Status, Next Step",
-                            "Set a recurring time to update (every Friday, 5 minutes) - this becomes your habit",
-                            "Share one status update with your manager or a stakeholder who needs to know",
-                            "Keep this list visible - refer to it daily when prioritizing work"
+                        consolidatedActions: [
+                            "Create simple personal PM tracking system (spreadsheet, tool, whatever works)",
+                            "Review and adjust delegation patterns—are you regularly delegating?",
+                            "Establish weekly reflection habit (Friday 15-min review)",
+                            "Get feedback on coordination and create improvement plan",
+                            "Document your PM journey: progress, challenges, learning",
+                            "Plan next 3 months based on Month 1-3 experience"
                         ],
-                        dailyPractice: "Glance at your list and ask: 'What's the next important step I can take today?'",
-                        successMetric: "List created and updated weekly; you've shared status with manager",
-                        coachingTip: "Tracking isn't about being busy. It's about knowing what actually matters and moving it forward consistently."
+                        dailyPractice: "Use your PM system daily; ask one person about blockers; update one status",
+                        monthlyOutcome: "You have sustainable PM habits: regular communication, consistent tracking, regular delegation, weekly reflection. You're no longer reactive—you're building intentional PM practice.",
+                        monthlyTips: [
+                            "Systems beat willpower—build systems you can maintain without heroic effort",
+                            "Weekly reflection is where learning happens—don't skip it",
+                            "You're not a PM yet, but you're building like one—that's the foundation",
+                            "Celebrate that you've shifted how you think about work"
+                        ],
+                        warningSign: "Reverting to old patterns (skipping meetings, not tracking, doing everything yourself); losing consistency"
                     }
-                ],
-                warningsSigns: [
-                    "Focusing only on your own tasks, missing how they fit into larger project",
-                    "Not communicating about progress or blockers",
-                    "Forgetting deadlines or dependencies",
-                    "Waiting for someone else to coordinate or track"
-                ],
-                weeklyCheckInQuestions: [
-                    "Did I understand how my work supports others?",
-                    "Did I delegate or coordinate something?",
-                    "Did I update my simple tracking system?",
-                    "Did I notice something about how projects work?"
                 ]
             },
             "level-2": {
@@ -507,86 +568,157 @@
                     { title: "Smart Delegation", text: "Delegate strategically to scale your impact" },
                     { title: "Obstacle Navigation", text: "Remove blockers and keep momentum moving" }
                 ],
-                weeks: [
+                months: [
                     {
-                        weekNum: 1,
-                        phase: "Foundation",
-                        title: "Assess what you're already doing that's project work",
-                        goal: "Recognize and own the coordination work you do",
-                        actions: [
-                            "Inventory 3 projects where you coordinate or support major work",
-                            "For each, list what you do: meetings, decisions, communications, problem-solving, status tracking",
-                            "Rate yourself 1-5 on: clarity (do people know what's expected?), frequency (how often do you communicate?), consistency (same day/time each week?)",
-                            "Ask 2 teammates or stakeholders: 'How am I doing as a coordinator?' - use your ratings as reference",
-                            "Compare their feedback to your self-rating - where's the gap?"
+                        monthNum: 1,
+                        monthTitle: "Consistency: Build Your Coordination Cadence",
+                        phase: "Development",
+                        monthGoal: "Establish predictable, reliable communication and coordination patterns that stakeholders depend on",
+                        guidance: "You're already doing coordination work. This month formalizes it into reliable cadence. You'll move from ad-hoc coordination to structured rhythm. Consistency is your competitive advantage—people will trust your processes and show up for your meetings.",
+                        quickTip: "Commit to your calendar right now. Block every single recurring meeting for 90 days. Don't negotiate. One missed meeting signals that the cadence is optional. Your reliability is your currency—protect it fiercely.",
+                        weeklyFocus: [
+                            {
+                                week: "1-2",
+                                focus: "Map your coordination responsibility",
+                                actions: [
+                                    "Identify 3 projects or workstreams where you coordinate (not necessarily as PM, but you touch multiple people/teams)",
+                                    "For each: List all stakeholders, their role, their interests, their communication needs",
+                                    "Rate yourself 1-5 on: How clear are expectations? How consistent is communication? How aligned are people?",
+                                    "Assess current rhythm: Do you have regular syncs? Status updates? Decision checkpoints? How often and how consistent?",
+                                    "Ask 3 stakeholders: 'How am I doing as a coordinator? What's clear? What's confusing?'",
+                                    "Document gaps: Where communication breaks down? Where do people feel out of sync?"
+                                ]
+                            },
+                            {
+                                week: "3-4",
+                                focus: "Establish coordination cadence",
+                                actions: [
+                                    "For each project: Design your coordination calendar for next 90 days",
+                                    "Minimum cadence: Weekly team sync, Weekly stakeholder update, Monthly all-hands or business review",
+                                    "Create templates: Team meeting agenda, Status update format, Decision log, Risk log, Blocker tracking",
+                                    "Schedule all meetings for 90 days (commit to consistency)",
+                                    "Communicate the cadence to all stakeholders (email or meeting): 'Here's what, when, why, who, what we need from you'",
+                                    "Hold first week of meetings using your templates—get feedback immediately and adjust"
+                                ]
+                            }
                         ],
-                        dailyPractice: "Notice one coordination task you do that nobody officially calls 'project management'",
-                        successMetric: "Self-assessment complete, feedback from 2 people gathered, gaps identified",
-                        coachingTip: "You're probably doing more PM-like work than you realize. Naming it and owning it is where your growth starts."
+                        consolidatedActions: [
+                            "Map coordination responsibility across 3 projects/workstreams with clear stakeholder roles",
+                            "Design 90-day coordination calendar with recurring meetings and updates",
+                            "Create communication templates (agenda, status, decisions, risks, blockers)",
+                            "Schedule all recurring meetings and commit to them",
+                            "Get stakeholder feedback on your cadence and adjust based on input"
+                        ],
+                        dailyPractice: "Spend 15 minutes on coordination: Prepare for today's meeting, send status update, or coordinate on blocker",
+                        monthlyOutcome: "You have predictable, consistent communication rhythm. Stakeholders know what to expect and when. You've moved from sporadic coordination to reliable systems. People trust your processes.",
+                        monthlyTips: [
+                            "Consistency is your credibility—people will trust and rely on your rhythm",
+                            "Good templates save time and improve quality—invest in them",
+                            "One skipped meeting damages trust; skip two and people stop showing up",
+                            "Predictability is more valuable than perfection"
+                        ],
+                        warningSign: "Meetings get rescheduled often; you're communicating inconsistently; stakeholders don't know what to expect"
                     },
                     {
-                        weekNum: 2,
-                        phase: "Foundation",
-                        title: "Build consistent communication rhythm",
-                        goal: "Create predictable communication patterns that stakeholders rely on",
-                        actions: [
-                            "For each project you coordinate: set recurring meeting/update times",
-                            "Minimum: Weekly team sync or status update, Weekly key stakeholder update",
-                            "Optional: Brief daily standup or Slack check-in if fast-moving",
-                            "Block calendar for 90 days - communicate the cadence to the team (always Tuesday 2pm, always Thursday email)",
-                            "Prepare simple agenda template: What's done? What's in progress? What's blocked? What decisions do we need? Any risks?",
-                            "Hold all recurring meetings this week and following weeks - be disciplined about it"
+                        monthNum: 2,
+                        monthTitle: "Delegation: Scale Through Your People",
+                        phase: "Development",
+                        monthGoal: "Strategically delegate high-impact work to build team capability and free up your time for coordination",
+                        guidance: "Month 2 moves from coordination to team development. You'll delegate strategically—not busy work, but meaningful work that develops others and scales your impact. By month end, you're multiplying your impact through your team, not just through your own effort.",
+                        quickTip: "Frame every delegation as a development opportunity, not a task offload. 'I'm handing this to you because I see your capability growing in this area' is completely different from 'I don't have time for this.' The first builds loyalty and growth; the second builds resentment.",
+                        weeklyFocus: [
+                            {
+                                week: "5-6",
+                                focus: "Plan strategic delegation",
+                                actions: [
+                                    "For each project you coordinate: What are you still doing that someone else could own?",
+                                    "Categorize: Easy/high-impact (delegate first), Hard/high-impact (delegate with support), Busy work (stop or automate), Only-you (keep but minimize)",
+                                    "Identify 3-4 team members ready to grow—what capability do they need to develop?",
+                                    "Create delegation plan: What work? Who? Why does it matter for them? Timeline? Support? Success criteria?",
+                                    "Prepare conversations: For each delegation, explain why it matters, what you expect, how you'll support them",
+                                    "Start with one low-risk, high-confidence delegation—prove the model works"
+                                ]
+                            },
+                            {
+                                week: "7-8",
+                                focus: "Coach delegated work",
+                                actions: [
+                                    "Implement 3+ strategic delegations with clear written expectations",
+                                    "For each: First meeting (explain), mid-point check-in (how's it going?), final check-in (what did you learn?)",
+                                    "Coach mindset, not just tasks: Help them think through approach, not just execute your way",
+                                    "Celebrate wins and visible growth—tie work to their development",
+                                    "Document: What worked? What will you delegate next?",
+                                    "Assess time freed: What are you now doing with the time you've freed? Is it higher-impact work?"
+                                ]
+                            }
                         ],
-                        dailyPractice: "Send one status update or ask one progress question",
-                        successMetric: "Recurring meetings scheduled for 90 days, team knows cadence, first week of meetings held",
-                        coachingTip: "Consistency matters more than perfection. A brief weekly sync beats urgent firefighting every day."
+                        consolidatedActions: [
+                            "Identify 3-4 team members for strategic delegation with clear growth intent",
+                            "Create delegation plan for each: Work, why it matters, support, timeline, success criteria",
+                            "Implement 3+ strategic delegations with written expectations",
+                            "Coach delegated work: Initial, mid-point, final conversations",
+                            "Verify you're using freed-up time for higher-impact coordination work, not just more work"
+                        ],
+                        dailyPractice: "Follow up on one delegated task; coach someone on their approach; notice if you're doing work you delegated",
+                        monthlyOutcome: "You've delegated 3+ meaningful pieces of work. Team members are growing. You're doing more coordination/strategy, less execution. Your impact is multiplying through others.",
+                        monthlyTips: [
+                            "Delegation is about them growing, not you avoiding work",
+                            "Your job is no longer to do the work—it's to get it done through others",
+                            "Coaching matters—delegation without support is just dumping",
+                            "You're successful when your team can do your work better than you"
+                        ],
+                        warningSign: "Taking back delegated work prematurely; not coaching; still doing all execution; team isn't growing"
                     },
                     {
-                        weekNum: 3,
-                        phase: "Foundation",
-                        title: "Delegate strategically to yourself for what matters",
-                        goal: "Free up your time for strategic coordination work",
-                        actions: [
-                            "Look at each project: What are you doing that someone else could do?",
-                            "Prioritize: Which tasks, if delegated, would free up your strategic thinking time?",
-                            "Choose 2-3 tasks this week to delegate (not just busy work - things that help others grow)",
-                            "For each: Write clear expectations in writing (email, doc, tool - not just verbal)",
-                            "Include: What specifically? Why does it matter? When is it due? Who's the expert if they have questions?",
-                            "Follow up: 'How's it going? Need anything from me?'"
+                        monthNum: 3,
+                        monthTitle: "Navigation: Remove Obstacles and Maintain Momentum",
+                        phase: "Development",
+                        monthGoal: "Proactively identify and remove blockers; maintain project momentum through obstacle navigation",
+                        guidance: "Month 3 focuses on keeping projects moving. Most projects stall due to obstacles, not lack of effort. You'll become the person who removes blockers, unblocks decisions, and keeps momentum. This is where coordinators become coordinators that matter.",
+                        quickTip: "Name the blocker before you try to solve it. Most teams waste energy on vague problems. 'We're slow' is meaningless. 'We're waiting for design approval from Product' is actionable. Specificity unlocks solutions. Ask 'What specifically is stopping us?' and listen for the real answer.",
+                        weeklyFocus: [
+                            {
+                                week: "9-10",
+                                focus: "Identify and own obstacles",
+                                actions: [
+                                    "For each project/workstream: Ask stakeholders 'What's slowing us down? What do you need that you don't have?'",
+                                    "Document all blockers: Technical, process, people, decision, skill, resource, clarity",
+                                    "Assess impact: Which blockers are actually killing progress? Which are minor annoyances?",
+                                    "Prioritize: Focus on 2-3 critical blockers that unlock progress",
+                                    "For each critical blocker: Root cause (not just symptom), owner (who can solve), timeline, what you need to do",
+                                    "Create blocker tracking: What's the blocker? When identified? Root cause? Owner? Resolution plan? ETA?"
+                                ]
+                            },
+                            {
+                                week: "11-13",
+                                focus: "Drive resolution",
+                                actions: [
+                                    "Meet with each blocker owner: Understand their perspective, commit to resolution, establish check-in cadence",
+                                    "For decision blockers: Who decides? What do they need to decide? When can you unblock?",
+                                    "For resource blockers: What's missing? Can you find/create/reallocate? Alternative approaches?",
+                                    "For clarity blockers: Document requirements, get alignment, communicate decision",
+                                    "For people blockers: Is it skills? Capacity? Alignment? Conflict? Address root cause, not symptom",
+                                    "Track resolution: Weekly update on all blockers, celebrate when resolved, document learning"
+                                ]
+                            }
                         ],
-                        dailyPractice: "Think: 'Would this task help someone else grow if I delegated it?'",
-                        successMetric: "2-3 tasks delegated with clear written expectations, first ones completed",
-                        coachingTip: "You're not delegating to avoid work. You're delegating to scale impact and develop others."
-                    },
-                    {
-                        weekNum: 4,
-                        phase: "Foundation",
-                        title: "Remove obstacles and maintain momentum",
-                        goal: "Keep projects moving by resolving blockers",
-                        actions: [
-                            "Ask each project team: 'What's slowing us down? What do you need that you don't have?'",
-                            "Document: Missing tools? Decisions from leadership? Clarification needed? Skill gaps? Process problems?",
-                            "Pick the top 2-3 blockers actually affecting progress",
-                            "For each: Identify who can solve it and what you need from them",
-                            "Create action plan: Meet with blocker owner, understand root cause, commit to when it's solved",
-                            "Track weekly: 'Blocker identified [date]. Action: [step]. Target resolution: [date]. Status: [update]'"
+                        consolidatedActions: [
+                            "Identify all active blockers across your projects; assess impact and prioritize top 3",
+                            "For each critical blocker: Define root cause, identify owner, create resolution plan",
+                            "Create blocker tracking system and use weekly",
+                            "Drive resolution through conversations and problem-solving, not escalation",
+                            "Celebrate blocker resolution and share learning"
                         ],
-                        dailyPractice: "Ask one person: 'Anything blocking you right now?'",
-                        successMetric: "2-3 blockers identified, action plan created, 1-2 in progress toward resolution",
-                        coachingTip: "The fastest way to deliver is to remove obstacles, not to work harder. Blockers are your priority."
+                        dailyPractice: "Ask one person 'Anything blocking you?'; update one blocker; drive one resolution forward",
+                        monthlyOutcome: "You've resolved 2-3 significant blockers. Projects are moving. You're known as someone who removes obstacles. Momentum is maintained across your workstreams.",
+                        monthlyTips: [
+                            "Blockers are your priority—removing them is your highest-value work",
+                            "Most blockers are solvable once you name them and take them seriously",
+                            "Don't escalate first—investigate and problem-solve first",
+                            "You're not solving every technical problem—you're creating conditions for others to solve problems"
+                        ],
+                        warningSign: "Projects are stalling due to identified blockers; you're not tracking obstacles; stakeholders are frustrated with lack of progress"
                     }
-                ],
-                warningsSigns: [
-                    "Inconsistent communication (meetings get skipped or rescheduled often)",
-                    "Doing all the work yourself instead of delegating",
-                    "Avoiding difficult conversations about blockers or delays",
-                    "Projects grinding to halt when you're busy"
-                ],
-                weeklyCheckInQuestions: [
-                    "Did I hold my recurring meetings this week?",
-                    "Did I delegate something strategic?",
-                    "Did I remove or advance on a blocker?",
-                    "Am I building consistency in my coordination?"
                 ]
             },
             "level-3": {
@@ -599,84 +731,157 @@
                     { title: "Team Capability", text: "Build team capability; guide problem-solving vs. solving it yourself" },
                     { title: "Stakeholder Alignment", text: "Manage expectations and influence across boundaries" }
                 ],
-                weeks: [
+                months: [
                     {
-                        weekNum: 1,
-                        phase: "Foundation",
-                        title: "Reduce hands-on work and increase strategic focus",
-                        goal: "Shift from execution to coordination and planning",
-                        actions: [
-                            "Time audit (2-3 days): Track your time in 30-min increments - hands-on work, team coordination, strategic thinking, admin",
-                            "Analyze: What's your current allocation? Target: Execution 15%, Coordination 40%, Strategy 30%, Admin 15%",
-                            "Identify 5+ tasks you're still doing that a team member could own",
-                            "Create transition plan: 'Week 1: Delegate X to [person], Week 2: Y to [person]'",
-                            "Have conversations: 'I want to shift how I work. I need to hand off [X]. Can you own this? Here's why it matters.'"
+                        monthNum: 1,
+                        monthTitle: "Strategic: Shift From Execution to Coordination",
+                        phase: "Development",
+                        monthGoal: "Transition from hands-on execution to strategic PM—planning, alignment, and development",
+                        guidance: "You're doing PM-level coordination work. Month 1 formalizes the shift from execution to strategy. You'll reduce hands-on work and increase time on planning, stakeholder alignment, and team development. By month end, your time allocation reflects PM work, not individual contributor work.",
+                        quickTip: "Block your strategic time first, before anyone else books your calendar. Monday 9am-1pm is Strategy and Planning. Thursday 2-5pm is Stakeholder Alignment and Development. Protect these blocks like they're with your CEO. Your most important work happens there.",
+                        weeklyFocus: [
+                            {
+                                week: "1-2",
+                                focus: "Shift execution to others",
+                                actions: [
+                                    "Time audit (2-3 days): Track time in 30-min blocks - execution, coordination, strategy, admin",
+                                    "Current allocation vs. target: Where are you spending time? Where should you be?",
+                                    "Identify execution tasks still on your plate: Things you're doing that someone else could own",
+                                    "Create transition plan: 5+ tasks to delegate over next 8 weeks, with owners, timeline, and support",
+                                    "Prioritize high-impact delegations: What if delegated, frees you for strategic work?",
+                                    "Have conversations: 'I'm shifting my role. I'm handing off [X] to you. Here's why and how I'll support you.'"
+                                ]
+                            },
+                            {
+                                week: "3-4",
+                                focus: "Increase strategic time",
+                                actions: [
+                                    "Block time on calendar: Strategic planning (4-5 hours/week), stakeholder alignment (3 hours/week), team development (3 hours/week)",
+                                    "Protect these blocks—don't let them get hijacked for execution",
+                                    "For each project: Create 6-month vision and 3-month strategic priorities (not task lists)",
+                                    "Define success for each priority: Outcomes, metrics, milestones, risks",
+                                    "Share vision with team and stakeholders—get feedback and adjust",
+                                    "Set up quarterly strategy reviews to track progress and adjust"
+                                ]
+                            }
                         ],
-                        dailyPractice: "Notice when you're in execution mode. Ask: 'Is this the best use of my time?'",
-                        successMetric: "Time audit complete, 5+ delegation opportunities identified, first 2 delegations underway",
-                        coachingTip: "PMs scale through people, not through their own effort. Shift your focus accordingly."
+                        consolidatedActions: [
+                            "Complete time audit and establish target allocation (15% execution, 40% coordination, 30% strategy, 15% admin)",
+                            "Create delegation plan for 5+ execution tasks over 8 weeks",
+                            "Block strategic time on calendar (10 hours/week) and protect it",
+                            "Create 6-month vision and 3-month priorities for each project/workstream",
+                            "Share strategic direction and get stakeholder alignment"
+                        ],
+                        dailyPractice: "Spend 30 minutes on strategic thinking; delegate one task; protect your strategic time blocks",
+                        monthlyOutcome: "You've shifted time allocation toward strategy. You have clear 6-month vision and 3-month priorities for your projects. You're thinking strategically, not just executing tactically.",
+                        monthlyTips: [
+                            "PMs plan; they don't execute. Shift your mindset accordingly",
+                            "Strategic thinking is a skill—invest time in it like any skill",
+                            "Your vision doesn't have to be perfect—it has to be clear and directional",
+                            "Delegation is how you create space for strategy"
+                        ],
+                        warningSign: "Still spending most of your time on execution; no clear strategic direction; constantly reacting instead of planning"
                     },
                     {
-                        weekNum: 2,
-                        phase: "Foundation",
-                        title: "Set strategic direction for your projects",
-                        goal: "Define where projects are going and why it matters",
-                        actions: [
-                            "For each project/work stream: Define 3-6 month vision - Where will we be? What will have changed? What capabilities will we build?",
-                            "Identify 2-3 strategic priorities for next 90 days (not just 'complete deliverables' but 'build capability' or 'improve process')",
-                            "For each priority: Why it matters, success metrics, timeline, owner",
-                            "Share with: Your manager (alignment), Your team (direction), Key stakeholders (context)",
-                            "Get feedback: 'What am I missing? What matters most? Any conflicts I should know about?'"
+                        monthNum: 2,
+                        monthTitle: "Team Capability: Build Through Coaching",
+                        phase: "Development",
+                        monthGoal: "Develop team capability and shift from solving problems to coaching others to solve them",
+                        guidance: "Month 2 focuses on team development. You'll move from 'solving every problem' to 'developing problem-solvers.' You'll coach your team to handle complexity, make decisions, and own outcomes. By month end, your team is stronger and more capable.",
+                        quickTip: "When someone brings you a problem, pause before problem-solving. Ask: 'How would you approach this?' 'What options do you see?' 'What would you recommend?' Then listen. Your job shifts from having the answers to helping them find the answers. That's coaching.",
+                        weeklyFocus: [
+                            {
+                                week: "5-6",
+                                focus: "Identify development needs and opportunities",
+                                actions: [
+                                    "Assess your team: Who's ready to grow? In what areas? What opportunities exist for them?",
+                                    "For 2-3 high-potential people: Create development plan - capability needed, how to build, timeline, support",
+                                    "Identify meaningful work assignments: What challenges would develop them?",
+                                    "Plan exposure: What decisions should they see? What leaders should they meet? What cross-functional work?",
+                                    "Have conversations: 'I see your potential. Here's how I want to develop you. Here's what I'm asking you to take on.'",
+                                    "Get feedback: 'What do you want to develop? What interests you? What would stretch you?'"
+                                ]
+                            },
+                            {
+                                week: "7-8",
+                                focus: "Coach and develop",
+                                actions: [
+                                    "Stop solving every problem—instead, coach: 'How would you approach this? What are the options? What's your recommendation?'",
+                                    "Weekly coaching conversations: Not status updates, but development conversations",
+                                    "Give meaningful work: Ownership of a project piece, leading a workstream, cross-functional initiative",
+                                    "Create thinking partnership: Help them think through complex situations, don't just give answers",
+                                    "Feedback: Give specific, timely feedback on what's working and what to adjust",
+                                    "Celebrate growth: Recognize capability development explicitly"
+                                ]
+                            }
                         ],
-                        dailyPractice: "Spend 15 minutes thinking strategically about one project",
-                        successMetric: "3-6 month vision documented, 2-3 strategic priorities set, team and stakeholders aligned",
-                        coachingTip: "Strategy isn't extra work. It's clarity that makes every action count."
+                        consolidatedActions: [
+                            "Create development plans for 2-3 high-potential team members",
+                            "Assign meaningful work that stretches and develops them",
+                            "Shift from problem-solving to coaching—ask questions, don't give answers",
+                            "Have weekly coaching conversations (development focus, not status)",
+                            "Notice yourself: Stop problem-solving solo; involve team"
+                        ],
+                        dailyPractice: "Coach one person on a challenge; observe yourself problem-solving and ask 'Should I coach instead?'",
+                        monthlyOutcome: "Team members are growing and taking on more. You're coaching, not solving. Your team is stronger and more capable. People feel developed, not just managed.",
+                        monthlyTips: [
+                            "Coaching is harder than solving—but it builds capacity you don't have",
+                            "Your job is to make your team strong, not to be the smartest person",
+                            "Growth happens in stretch assignments, not comfort zone",
+                            "The best teams have multiple people who could do the PM role"
+                        ],
+                        warningSign: "Team members depend on you for every decision; people aren't growing; you're always the problem-solver"
                     },
                     {
-                        weekNum: 3,
-                        phase: "Foundation",
-                        title: "Develop team capability (don't just deliver)",
-                        goal: "Build team strength while delivering projects",
-                        actions: [
-                            "Identify 1-2 team members ready to grow - What skill or exposure do they need?",
-                            "Create development plan: What capability? How will they develop it? Timeline? Success criteria?",
-                            "Assign meaningful work (not fake training): Lead a feature, own a workstream, cross-team exposure",
-                            "Start coaching: Explain the big picture, watch them plan, provide feedback, let them practice",
-                            "Check in weekly: 'How's it going? What are you learning? What do you need from me?'"
+                        monthNum: 3,
+                        monthTitle: "Influence: Align and Manage Across Boundaries",
+                        phase: "Development",
+                        monthGoal: "Build stakeholder relationships and influence beyond your direct control; manage complex dependencies",
+                        guidance: "Month 3 focuses on influence and alignment. You'll work with stakeholders you don't directly manage. You'll navigate complex dependencies, manage expectations, and build relationships that allow you to get things done through influence, not authority.",
+                        quickTip: "Understand their priorities before asking for anything. 'Help me understand what success looks like for you this quarter?' gets you so much further than explaining your needs first. People support what matters to them. Make their win your win.",
+                        weeklyFocus: [
+                            {
+                                week: "9-10",
+                                focus: "Map stakeholders and understand needs",
+                                actions: [
+                                    "Identify all stakeholders (not just your team): Leaders, peers, cross-functional partners, clients, vendors",
+                                    "For each key stakeholder: Understand their priorities, constraints, concerns, how your work affects them",
+                                    "Schedule 1-on-1 conversations: 'Help me understand your priorities. How does my work affect you? What do you need from me?'",
+                                    "Identify conflicts: Where might your priorities conflict with theirs? What dependencies exist?",
+                                    "Document: Stakeholder map with priorities, interests, concerns, how to influence",
+                                    "Identify opportunities: Where can you support them? What wins can you help create?"
+                                ]
+                            },
+                            {
+                                week: "11-13",
+                                focus: "Build relationships and manage expectations",
+                                actions: [
+                                    "Regular stakeholder updates: Not just status, but strategic updates on what matters to them",
+                                    "Proactive communication: Before problems, not after—share concerns, risks, options early",
+                                    "Support their success: Find 1-2 ways you can help each stakeholder succeed",
+                                    "Navigate conflicts: When priorities conflict, bring them to the table early, present options, seek alignment",
+                                    "Build trust: Follow through on commitments, be transparent about constraints, advocate for them when appropriate",
+                                    "Escalate thoughtfully: Resolve what you can; escalate what you can't"
+                                ]
+                            }
                         ],
-                        dailyPractice: "Spend 15 min coaching or mentoring; notice growth happening",
-                        successMetric: "Development plan created and started for 1-2 people, growth work assigned",
-                        coachingTip: "Your job is to make your team strong. The best coordinators are measured by how strong their team becomes."
-                    },
-                    {
-                        weekNum: 4,
-                        phase: "Foundation",
-                        title: "Align stakeholders across organizational boundaries",
-                        goal: "Build relationships and manage expectations proactively",
-                        actions: [
-                            "Map stakeholders: Who influences your success? Who depends on you? Who could help or hurt?",
-                            "For 4-5 key stakeholders: Schedule 30-min conversations",
-                            "In each: Share your project priorities, ask 'How does my work impact you? What do you need?', listen for conflicts/dependencies",
-                            "Document: Their priorities, concerns, how you can support them",
-                            "Find 1-2 ways to help them succeed (this builds goodwill and influence)",
-                            "Establish communication plan: How will you keep them updated? Monthly? Email? Quarterly business review?"
+                        consolidatedActions: [
+                            "Map key stakeholders and understand their priorities, constraints, concerns",
+                            "Schedule 1-on-1 conversations with 4-5 critical stakeholders",
+                            "Establish regular stakeholder communication (monthly business review, weekly updates as appropriate)",
+                            "Identify 1-2 ways to support each stakeholder's success",
+                            "Navigate 1-2 complex stakeholder conflicts or dependencies"
                         ],
-                        dailyPractice: "Reach out to one stakeholder - share an update or ask a question",
-                        successMetric: "Key stakeholders identified and understood, 1-2 support opportunities identified",
-                        coachingTip: "You influence through relationships and reputation, not just authority. Invest in both."
+                        dailyPractice: "Reach out to one stakeholder; share an update; anticipate a dependency or conflict",
+                        monthlyOutcome: "You have strong stakeholder relationships. People understand your priorities and constraints. Dependencies are managed. You influence through relationships, not just authority.",
+                        monthlyTips: [
+                            "Influence is built on relationships and trust over time",
+                            "Understand stakeholders' needs better than your own—it builds goodwill",
+                            "Transparency about constraints builds more credibility than false promises",
+                            "Your job is to manage up and across as much as down"
+                        ],
+                        warningSign: "Stakeholder conflicts surprise you; people misunderstand your work; you lack influence outside your team"
                     }
-                ],
-                warningsSigns: [
-                    "Taking back delegated work prematurely",
-                    "Getting pulled into execution too often",
-                    "Inconsistent communication with stakeholders",
-                    "Missing strategic opportunities"
-                ],
-                weeklyCheckInQuestions: [
-                    "Did I spend time on strategic thinking, not just execution?",
-                    "Did I delegate high-impact work?",
-                    "Did I develop someone's capability?",
-                    "Did I strengthen a stakeholder relationship?"
                 ]
             },
             "level-4": {
@@ -689,79 +894,10 @@
                     { title: "Organizational Impact", text: "Drive PM excellence across your organization" },
                     { title: "Sustainability", text: "Build systems and culture for long-term success" }
                 ],
-                weeks: [
-                    {
-                        weekNum: 1,
-                        title: "Mentor Emerging Leaders",
-                        goal: "Identify and develop the next generation",
-                        actions: [
-                            "Identify 1-2 high-potential team members for emerging leadership",
-                            "Create mentoring plan - What leadership skills? How to develop? Timeline?",
-                            "Have mentoring conversations - Share frameworks, expose to decisions, provide feedback",
-                            "Delegate leadership opportunities - Lead a project, represent in meeting, solve cross-team issue",
-                            "Track their growth and celebrate progress"
-                        ],
-                        dailyPractice: "Spend 15 min mentoring an emerging leader",
-                        successMetric: "Mentoring plan created, 1+ leadership opportunities given",
-                        coachingTip: "Your legacy is the leaders you develop, not the projects you complete."
-                    },
-                    {
-                        weekNum: 2,
-                        title: "Build Organizational PM Excellence",
-                        goal: "Share PM practices across organization",
-                        actions: [
-                            "Audit your PM practices - What's working well? What could others learn from?",
-                            "Document your best practices - Templates, processes, frameworks",
-                            "Share in org forums - Present at meetings, write documentation, mentor other PMs",
-                            "Identify where org PM practices are weak and help improve",
-                            "Build PM community - Connect PMs, share learning, celebrate wins"
-                        ],
-                        dailyPractice: "Share one PM insight or best practice",
-                        successMetric: "Best practices documented and shared, org PM improved",
-                        coachingTip: "You're not just a PM. You're a PM who helps others become great PMs."
-                    },
-                    {
-                        weekNum: 3,
-                        title: "Plan for Sustainability",
-                        goal: "Build systems for long-term success",
-                        actions: [
-                            "Assess what's working and what's sustainable",
-                            "Identify scaling needs - Where are bottlenecks? What processes need documentation? Who needs more authority?",
-                            "Plan for next phase - Structure changes? New roles? Process improvements? Resource needs?",
-                            "Prepare team for scaling - Communicate why, get input, identify emerging leaders",
-                            "Prepare yourself - What skills do you need? What will you delegate? How will you stay connected?"
-                        ],
-                        dailyPractice: "Think about scaling and document key processes",
-                        successMetric: "Scaling plan created, team prepared, emerging leaders identified",
-                        coachingTip: "Growth requires intentional planning. Plan for success."
-                    },
-                    {
-                        weekNum: 4,
-                        title: "Gather 360 Feedback",
-                        goal: "Understand your impact and adjust",
-                        actions: [
-                            "Self-reflection - Rate yourself 1-10 on PM growth, what surprised you, what's hardest, what's rewarding",
-                            "Gather 360 feedback - From team: 'How am I leading?' From manager, peers, stakeholders",
-                            "Analyze patterns - Where's consistent positive? Where's consistent challenge? What's your blind spot?",
-                            "Plan adjustments - Continue what's working, intensify on challenges, set new goals",
-                            "Document lessons and celebrate progress"
-                        ],
-                        dailyPractice: "Reflect on your PM journey and impact",
-                        successMetric: "360 feedback gathered, patterns identified, Month 2 plan created",
-                        coachingTip: "Feedback is a gift. The most successful leaders actively seek it."
-                    }
-                ],
-                warningsSigns: [
-                    "Stopping mentorship of emerging leaders",
-                    "Not documenting processes and lessons",
-                    "Missing organizational PM opportunities",
-                    "Losing focus on long-term strategy"
-                ],
-                weeklyCheckInQuestions: [
-                    "Did I mentor someone this week?",
-                    "Did I share a best practice?",
-                    "Did I think about sustainability?",
-                    "Did I strengthen the PM community?"
+                months: [
+                    { monthNum: 1, monthTitle: "Mentorship: Develop Emerging PM Leaders", phase: "Depth", monthGoal: "Identify and mentor high-potential team members into PM leadership roles", guidance: "Month 1 focuses on your legacy—developing the next generation of PMs. You'll identify emerging leaders, create structured mentoring relationships, and give them meaningful leadership opportunities. By month end, you have 1-2 mentees on clear development path toward PM leadership.", quickTip: "Give them real challenges, not easy tasks. Mentees grow at the edge of their capability. 'Lead the Q4 planning' (with your support) develops them. 'Organize the team lunch' doesn't. Stretch assignments + coaching = growth.", weeklyFocus: [{ week: "1-2", focus: "Identify and plan development", actions: ["Assess your team and broader organization: Who has PM potential?", "For 1-2 high-potential people: Create detailed development plan - current state, capability gaps, timeline, stretch assignments", "Explain the development path: 'You have potential to be a PM. Here's how we'll develop you. Here's what I'm asking you to take on.'", "Create mentoring structure: Weekly mentoring conversations, shared goals, feedback cadence", "Design leadership assignments: What projects or workstreams can they lead with your support?", "Get their commitment: 'This is a development opportunity. It will be challenging. Are you in?'"] }, { week: "3-4", focus: "Mentor and develop", actions: ["Weekly mentoring meetings: Not status updates, but skill/capability development conversations", "Teach frameworks: PM planning, stakeholder management, risk management, team development, decision-making", "Give meaningful assignments: Lead a project, own a workstream, lead cross-functional initiative", "Expose them: Decisions they should understand, leaders they should meet, strategic conversations they should hear", "Give feedback: What's working? What to adjust? How is their thinking evolving?", "Build your mentoring relationship: Be accessible, be honest about challenges, share your own learning"] }], consolidatedActions: ["Identify 1-2 high-potential team members for PM leadership development", "Create detailed development plans with clear capability gaps and timeline", "Establish structured mentoring (weekly conversations, shared goals, feedback)", "Assign meaningful leadership work (project lead, workstream owner, cross-functional work)", "Expose them to strategic decisions and organizational leadership"], dailyPractice: "Have mentoring conversation (asking questions, teaching framework); give feedback; create opportunity", monthlyOutcome: "You have 1-2 mentees with clear development path. They're taking on leadership work. You have structured mentoring in place. You're visibly investing in their growth.", monthlyTips: ["Your greatest legacy is the PMs you develop", "Mentoring is about their growth, not replicating yourself", "Give them real challenges and real support—that's how people grow", "The best mentees become better than you"], warningSign: "No mentoring happening; no emerging leaders; you're still doing all the PM work" },
+                    { monthNum: 2, monthTitle: "Excellence: Share PM Practices Organizationally", phase: "Depth", monthGoal: "Document and share PM practices; raise PM excellence across organization", guidance: "Month 2 scales your impact beyond your team. You'll document your PM practices, share them across organization, and help other PMs improve. By month end, PM practices and thinking are improving across your organization due to your influence.", quickTip: "Document your practices as you go, not at the end. After each successful project, spend 30 minutes writing: 'Here's what worked and why.' These become your playbook. Waiting to document means learning gets lost.", weeklyFocus: [{ week: "5-6", focus: "Audit and document practices", actions: ["Audit your PM practices: What works well? What do you do consistently? What frameworks do you use?", "Document: Decision-making framework, risk management approach, stakeholder communication template, planning process", "Assess: What have you learned in your PM journey? What PM principles guide you?", "Interview other PMs: What are they struggling with? What's working for them? What do they need?", "Identify gaps: Where is organizational PM practice weak? Where could you help most?", "Create content: Frameworks, templates, lessons, case studies"] }, { week: "7-8", focus: "Share and influence", actions: ["Share in organizational forums: Present PM practices, lessons, frameworks to PM community", "Create PM community: Regular meetings, shared learning, peer mentoring", "Mentor other PMs: Not your direct reports, but other PMs in organization", "Help on tough problems: When other PMs face challenges, help them think through", "Advocate for PM: Help leadership understand PM value; advocate for PM development resources", "Document lessons: Regularly capture and share learning from your projects"] }], consolidatedActions: ["Audit your PM practices and document what works", "Create frameworks, templates, and lessons to share", "Establish or contribute to organizational PM community", "Mentor 2-3 other PMs in organization (not direct reports)", "Share learning and practices regularly"], dailyPractice: "Document one PM insight; help one PM with a challenge; participate in PM community", monthlyOutcome: "You've documented and shared PM practices. Other PMs are learning from you. PM excellence is increasing across organization. You're recognized as a PM leader.", monthlyTips: ["Great practices shared become organizational culture", "Mentoring other PMs multiplies your impact", "Teaching forces you to think deeper about your own practices", "You're not just a PM—you're a PM who helps the organization improve"], warningSign: "PM practices aren't documented; no PM community; other PMs struggle and you don't help" },
+                    { monthNum: 3, monthTitle: "Sustainability: Build for Long-Term Success", phase: "Depth", monthGoal: "Build systems and structures that will sustain success beyond you; plan for growth and scaling", guidance: "Month 3 focuses on sustainability. You'll assess what you've built, what needs to scale, what systems need to be in place for long-term success. You'll plan for organizational growth and your own evolution as a leader.", quickTip: "Build systems that work without you. The test: if you took a 3-month sabbatical, would your team and projects thrive? If not, you're still a bottleneck. Sustainable systems make you dispensable (in the best way).", weeklyFocus: [{ week: "9-10", focus: "Assess and plan", actions: ["Assess current state: What's working well? What's fragile (depends on you or one person)? What will break when you scale?", "Identify scaling needs: Process improvements? New roles? Different structure? Resource needs?", "Plan for next phase: How will organization PM mature? What capabilities are needed? What will you focus on?", "Succession planning: If you move to new role, who could step into your current role? What would they need?", "Culture and capability: What PM culture do you want? What capabilities should be org-wide?", "Resource and support: What does PM need to be successful organization-wide? Budget? Tools? Training?"] }, { week: "11-13", focus: "Plan and execute", actions: ["Create sustainability plan: Systems, structures, capability, culture needed for success", "Identify building blocks: Process improvements, new roles, training, mentoring, tools", "Sequence the work: What's most important? What's foundation? What's next?", "Get organizational alignment: Leadership buy-in and support for scaling", "Execute phase 1: Start implementing most critical improvements", "Document and communicate: Share plan with team, mentees, and leadership"] }], consolidatedActions: ["Assess current PM capability and identify scaling needs", "Create sustainability plan for next 12-18 months", "Identify succession/development for your role and key positions", "Plan process improvements and capability building", "Get organizational alignment and resources for sustainability plan"], dailyPractice: "Think about systems and sustainability; work on one capability or process improvement", monthlyOutcome: "You have clear sustainability plan. Leadership supports scaling. You've identified what's needed for long-term success. You're thinking beyond your own role.", monthlyTips: ["Your job is to build systems that outlast you", "Best leaders invest in capability and culture, not just process", "Succession planning is a sign of strength, not weakness", "You're successful when your team and organization are stronger than you"], warningSign: "Success depends on you; no plan for scaling; others can't step into key roles" }
                 ]
             },
             "level-5": {
@@ -774,79 +910,10 @@
                     { title: "Organizational Impact", text: "Drive PM excellence across your organization" },
                     { title: "Sustainability", text: "Build systems and culture for long-term success" }
                 ],
-                weeks: [
-                    {
-                        weekNum: 1,
-                        title: "Shape Organizational Culture",
-                        goal: "Create PM leadership culture",
-                        actions: [
-                            "Vision: Define what PM excellence looks like in your org",
-                            "Lead by example - Model PM behaviors consistently",
-                            "Connect emerging PMs - Build community, share learning",
-                            "Recognize and celebrate PM wins across org",
-                            "Sponsor PM development initiatives"
-                        ],
-                        dailyPractice: "Demonstrate or recognize excellent PM behavior",
-                        successMetric: "PM culture vision articulated and demonstrated",
-                        coachingTip: "Culture is created through consistent behavior and intentional choices. Model excellence."
-                    },
-                    {
-                        weekNum: 2,
-                        title: "Develop PM Leaders Pipeline",
-                        goal: "Create systematic leadership development",
-                        actions: [
-                            "Identify 3-5 PMs with leadership potential across org",
-                            "Create structured development program - Mentoring, exposure, projects, feedback",
-                            "Align with org leadership on succession planning",
-                            "Create opportunities for high-potential PMs to lead",
-                            "Track pipeline and celebrate advancement"
-                        ],
-                        dailyPractice: "Mentor an emerging PM leader",
-                        successMetric: "Leadership pipeline created, development underway",
-                        coachingTip: "Your greatest legacy is the leaders you develop."
-                    },
-                    {
-                        weekNum: 3,
-                        title: "Drive Organizational Transformation",
-                        goal: "Lead strategic PM initiatives",
-                        actions: [
-                            "Identify where PM practices impact org success most",
-                            "Design transformation initiative - Goals, approach, timeline, resources",
-                            "Build coalition of support from leadership and PMs",
-                            "Execute initiative - Implement, monitor, adjust",
-                            "Document impact and lessons for organizational learning"
-                        ],
-                        dailyPractice: "Work on one strategic PM initiative",
-                        successMetric: "Transformation initiative launched and progressing",
-                        coachingTip: "You're not just leading your team anymore. You're leading the organization's PM evolution."
-                    },
-                    {
-                        weekNum: 4,
-                        title: "Plan Your Leadership Legacy",
-                        goal: "Ensure PM excellence outlasts you",
-                        actions: [
-                            "Reflect - What has been your impact as a PM leader?",
-                            "Document - What PM practices, frameworks, principles should persist?",
-                            "Institutionalize - Create systems, documentation, mentoring that will outlast you",
-                            "Plan succession - Who will carry forward your vision?",
-                            "Celebrate - Recognize the journey and the team that made it possible"
-                        ],
-                        dailyPractice: "Reflect on your leadership journey and impact",
-                        successMetric: "Legacy vision clarified, succession plan created",
-                        coachingTip: "The best leaders invest in systems and people that outlast them."
-                    }
-                ],
-                warningsSigns: [
-                    "Stopping mentorship of emerging leaders",
-                    "Losing sight of organizational impact",
-                    "Not documenting leadership lessons",
-                    "Becoming isolated from PM community"
-                ],
-                weeklyCheckInQuestions: [
-                    "Did I mentor an emerging PM leader?",
-                    "Did I advance organizational PM excellence?",
-                    "Did I demonstrate PM leadership?",
-                    "Did I think about my leadership legacy?"
+                months: [
+                    { monthNum: 1, monthTitle: "Culture: Shape Organizational PM Excellence", phase: "Leadership", monthGoal: "Define and demonstrate PM excellence culture; shape how organization values and practices PM", guidance: "Month 1 focuses on culture and organizational leadership. You're not just a good PM—you're a PM leader who shapes organizational culture. You'll define what PM excellence looks like, model it visibly, and influence how organization thinks about PM.", quickTip: "Make excellence visible through your daily actions. Your decisions, questions, and recognition shape culture more than any memo. When you ask 'How will this drive outcomes?' everyone learns that outcomes matter.", weeklyFocus: [{ week: "1-2", focus: "Define excellence and culture", actions: ["Articulate: What does PM excellence look like in your organization? What do great PMs do? What do they value?", "Define principles: What PM principles guide your organization? Outcomes focus? Stakeholder alignment? Team development? Continuous learning?", "Assess current culture: Where does organization live up to excellence? Where does it fall short? What's preventing culture shift?", "Identify influencers: Who shapes organizational culture? Who's receptive to PM excellence? Who needs to shift thinking?", "Design culture change: How will you shift thinking? What will you demonstrate? What will you communicate?", "Get leadership alignment: Do senior leaders understand and support PM excellence as organizational value?"] }, { week: "3-4", focus: "Model and influence", actions: ["Model excellence: Make your PM practices visible—how you think, how you decide, how you develop people", "Communicate principles: Share why PM excellence matters; talk about PM thinking in org forums", "Recognize and celebrate: Notice and celebrate PM excellence when you see it (other people, other teams)", "Mentor influencers: Work with other respected leaders to shift culture together", "Create symbols: Visible practices that signal what excellence looks like (recurring rituals, decisions, recognition)", "Build community: PM community that reinforces excellence and learning"] }], consolidatedActions: ["Define organizational PM excellence vision (what does it look like?)", "Articulate PM principles that guide your organization", "Model excellence visibly in your own work", "Mentor other influencers toward PM excellence", "Build PM community that reinforces culture"], dailyPractice: "Demonstrate PM excellence in your work; recognize it in others; talk about PM thinking", monthlyOutcome: "You've articulated PM excellence vision. You're modeling it visibly. Other leaders are beginning to shift toward PM thinking. Culture is slowly changing.", monthlyTips: ["Culture change is slow—lead by example, not just words", "Find other influencers—culture change is too big for one person", "Make excellence visible and concrete—not just abstract principles", "Celebrate wins; recognize progress; reinforce movement"], warningSign: "PM culture isn't shifting; leadership doesn't understand PM value; no community momentum" },
+                    { monthNum: 2, monthTitle: "Pipeline: Develop PM Leaders for the Future", phase: "Leadership", monthGoal: "Build systematic PM leadership development; create pipeline of future PM leaders", guidance: "Month 2 focuses on developing the next generation of PM leaders at scale. You'll create structured development program, identify high-potential PMs across organization, and intentionally build PM leadership pipeline.", quickTip: "Create peer learning in your cohort. Cohort members learning from each other is often more powerful than you mentoring them. Build accountability partnerships. They become your multipliers.", weeklyFocus: [{ week: "5-6", focus: "Design and launch program", actions: ["Design PM leadership development program: Curriculum, mentoring structure, assignments, timeline, expectations", "Identify 3-5 high-potential PMs across organization: Current state, potential, what they need to develop", "Recruit program participants: Explain opportunity, set expectations, get commitment", "Get organizational support: Budget, time, sponsorship from leadership", "Plan first cohort: Kick-off meeting, introduction to curriculum, mentoring assignments, first project/assignment", "Define success: How will you measure if program is working? What milestones matter?"] }, { week: "7-8", focus: "Execute and develop", actions: ["Lead program: Monthly curriculum sessions, mentoring, feedback, celebration", "Assign meaningful work: High-visibility projects, cross-functional leadership, organizational impact work", "Expose to leadership: Strategic decisions, board-level thinking, organizational priorities", "Create peer learning: Cohort members learning from each other, sharing experiences", "Track progress: Development, capability building, readiness for leadership roles", "Plan for advancement: How will program participants advance? What are next roles/opportunities?"] }], consolidatedActions: ["Design PM leadership development program with curriculum and structure", "Identify and recruit 3-5 high-potential PMs into first cohort", "Assign meaningful work that develops leadership capability", "Establish mentoring and peer learning", "Plan for advancement and next opportunities for program participants"], dailyPractice: "Mentor PM leader candidates; facilitate program; recognize development progress", monthlyOutcome: "You have PM leadership development program running. High-potential PMs are developing rapidly. Pipeline is building. Future PM leaders are being developed.", monthlyTips: ["Your greatest legacy is PM leaders you develop", "Give candidates real challenges and real visibility", "Peer learning in cohort is as valuable as mentoring", "Many current PMs could be better if you invested in them"], warningSign: "No PM development program; potential PMs aren't being developed; no leadership pipeline" },
+                    { monthNum: 3, monthTitle: "Transformation: Drive Organizational PM Evolution", phase: "Leadership", monthGoal: "Lead organizational transformation toward PM maturity; drive strategic PM initiatives", guidance: "Month 3 focuses on transformation and lasting impact. You'll identify where PM practices have highest impact on organizational success and drive transformation in those areas. By month end, you're driving strategic PM initiatives that improve organizational capability and results.", quickTip: "Celebrate small wins publicly and often. Transformation is slow. Every blocker removed, every process improved, every person developed is momentum. Share these wins. They prove change is possible.", weeklyFocus: [{ week: "9-10", focus: "Identify and plan transformation", actions: ["Assess: Where would PM excellence have highest impact on organizational results?", "Identify 1-2 transformation initiatives: Portfolio management? Program governance? Cross-functional alignment? Outcomes focus?", "Design transformation: What's the vision? What needs to change? Timeline? Milestones? Success metrics?", "Build coalition: Who needs to be part of this? Who influences? Who needs to support?", "Get alignment: Leadership buy-in and commitment to transformation", "Plan phase 1: What's first? What will move the needle? What will build momentum?"] }, { week: "11-13", focus: "Execute transformation", actions: ["Launch initiative: Kick-off, clear communications, visible commitment", "Build momentum: Celebrate wins, share progress, help people see the shift", "Remove obstacles: What's preventing transformation? Where's resistance? How do you help people through?", "Develop capability: Train people in new approaches, mentor leaders, build PM community", "Track progress: Metrics, milestones, outcomes, organizational impact", "Document learning: What's working? What to adjust? What's the legacy of this transformation?"] }], consolidatedActions: ["Identify 1-2 transformation initiatives that drive organizational PM evolution", "Design transformation with clear vision, timeline, and success metrics", "Build coalition and get leadership alignment", "Execute phase 1: Launch, build momentum, track progress", "Develop capability and remove obstacles to transformation"], dailyPractice: "Advance transformation; help someone through change; celebrate progress", monthlyOutcome: "Transformation initiative launched. Organizational PM capability is improving. You're driving strategic initiatives that impact organizational success. You're remembered as a transformational PM leader.", monthlyTips: ["Transformation is hard and takes time—lead with patience and persistence", "Change management matters as much as technical change", "Your legacy is organizational capability, not just individual achievement", "The best leaders leave organizations stronger than they found them"], warningSign: "No transformation happening; organization isn't evolving toward PM maturity; initiatives stall without you" }
                 ]
             }
         };
@@ -870,7 +937,7 @@
             
             localStorage.setItem('pmScore', score);
             displayResults(score);
-            populateMonthPlans(score);
+            populateMonths(score);
             populateQuickReference(score);
             showSection('results');
             showSaveIndicator();
@@ -878,7 +945,7 @@
         
         function displayResults(score) {
             const level = getLevel(score);
-            const guidance = detailedGuidance[level];
+            const guidance = monthlyGuidance[level];
             
             document.getElementById('scoreDisplay').textContent = score;
             document.getElementById('levelDisplay').innerHTML = 
@@ -897,102 +964,75 @@
             document.getElementById('focusAreasDisplay').innerHTML = areasHTML;
         }
         
-        function populateMonthPlans(score) {
-            // ALL MONTHS populated immediately after user generates roadmap
-            // Days 1-30 (Weeks 1-4), Days 31-60 (Weeks 5-8), Days 61-90 (Weeks 9-13)
-            
+        function populateMonths(score) {
             const level = getLevel(score);
-            const guidance = detailedGuidance[level];
+            const guidance = monthlyGuidance[level];
             
-            // MONTH 1: Days 1-30 (Weeks 1-4) - All rendered immediately
-            let month1HTML = '';
-            guidance.weeks.slice(0, 4).forEach(week => {
-                month1HTML += renderWeekContent(week);
+            guidance.months.forEach((month, idx) => {
+                const monthNum = idx + 1;
+                const monthId = `month${monthNum}`;
+                const contentId = `month${monthNum}Content`;
+                const titleId = `month${monthNum}Title`;
+                
+                document.getElementById(titleId).textContent = `📅 ${month.monthTitle}`;
+                
+                let monthHTML = `
+                    <div class="month-content">
+                        <h3>${month.monthGoal}</h3>
+                        <p><strong>Guidance:</strong> ${month.guidance}</p>
+                        ${month.quickTip ? `<p style="margin-top: 1rem; padding: 1rem; background: #f0f7ff; border-left: 4px solid #2e75b6; border-radius: 4px;"><strong>🎯 Take Action Quick Tip:</strong> ${month.quickTip}</p>` : ''}
+                    </div>
+                `;
+                
+                monthHTML += `<h3>Weekly Focus Areas</h3>`;
+                month.weeklyFocus.forEach(week => {
+                    monthHTML += `
+                        <div class="month-content">
+                            <h3>Weeks ${week.week}: ${week.focus}</h3>
+                            <p><strong>Actions:</strong></p>
+                            <ul>
+                                ${week.actions.map(action => `<li>${action}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                });
+                
+                monthHTML += `
+                    <div class="month-content">
+                        <h3>Month ${monthNum} Consolidated Actions</h3>
+                        <ul>
+                            ${month.consolidatedActions.map(action => `<li>${action}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+                
+                monthHTML += `
+                    <div class="month-content">
+                        <p><strong>Daily Practice (10-15 min):</strong> ${month.dailyPractice}</p>
+                        <p><strong>Monthly Outcome:</strong> ${month.monthlyOutcome}</p>
+                    </div>
+                `;
+                
+                monthHTML += `
+                    <div class="month-content">
+                        <h3>Key Insights for Month ${monthNum}</h3>
+                        <ul>
+                            ${month.monthlyTips.map(tip => `<li>${tip}</li>`).join('')}
+                        </ul>
+                        <p style="margin-top: 1rem;"><strong>⚠️ Warning Sign:</strong> ${month.warningSign}</p>
+                    </div>
+                `;
+                
+                document.getElementById(contentId).innerHTML = monthHTML;
             });
-            document.getElementById('month1Content').innerHTML = month1HTML;
-            
-            // MONTH 2: Days 31-60 (Weeks 5-8) - Extended to full 13 weeks, showing weeks 5-8
-            let month2HTML = '';
-            const weeks5to8 = extendWeeks(guidance, 5, 8);
-            weeks5to8.forEach(week => {
-                month2HTML += renderWeekContent(week);
-            });
-            document.getElementById('month2Content').innerHTML = month2HTML;
-            
-            // MONTH 3: Days 61-90 (Weeks 9-13) - Extended to full 13 weeks, showing weeks 9-13
-            let month3HTML = '';
-            const weeks9to13 = extendWeeks(guidance, 9, 13);
-            weeks9to13.forEach(week => {
-                month3HTML += renderWeekContent(week);
-            });
-            document.getElementById('month3Content').innerHTML = month3HTML;
-        }
-        
-        function renderWeekContent(week) {
-            return `
-                <div class="week-content">
-                    <h3>Week ${week.weekNum}: ${week.phase ? week.phase + ' Phase' : 'Growth'}</h3>
-                    <p><strong>Focus:</strong> ${week.title}</p>
-                    <p><strong>Goal:</strong> ${week.goal}</p>
-                    <p><strong>Actions:</strong></p>
-                    <ul>
-                        ${week.actions.map(action => `<li>${action}</li>`).join('')}
-                    </ul>
-                    <p><strong>Daily Practice:</strong> ${week.dailyPractice}</p>
-                    <p><strong>Success Metric:</strong> ${week.successMetric}</p>
-                    <p><strong>💡 Take Action Tip:</strong> ${week.coachingTip}</p>
-                </div>
-            `;
-        }
-        
-        function extendWeeks(guidance, startWeek, endWeek) {
-            // Generate weeks 5-13 by extending pattern from existing weeks
-            const weeks = [];
-            const existingCount = guidance.weeks.length;
-            
-            for (let i = startWeek; i <= endWeek; i++) {
-                if (i - 1 < existingCount) {
-                    // Use actual week if it exists
-                    weeks.push(guidance.weeks[i - 1]);
-                } else {
-                    // Generate extended week following structure
-                    // When full content is available, replace with actual data
-                    weeks.push({
-                        weekNum: i,
-                        title: `Week ${i}: ${generateWeekTitle(guidance, i)}`,
-                        goal: `Continue developing your PM capabilities in Month ${Math.ceil(i / 4)}`,
-                        actions: [
-                            `Deepen focus on your primary development area from this week's theme`,
-                            `Continue practicing the habit from Week ${i - 4 > 0 ? i - 4 : i}`,
-                            `Implement feedback from your stakeholders and team`,
-                            `Document progress toward your Month ${Math.ceil(i / 4)} milestones`
-                        ],
-                        dailyPractice: `Spend 15 minutes on structured PM development activity for this week's focus`,
-                        successMetric: `Week ${i} learning goals achieved and documented for reflection`,
-                        coachingTip: `Continued consistency builds momentum. Focus on incremental progress, not perfection.`
-                    });
-                }
-            }
-            return weeks;
-        }
-        
-        function generateWeekTitle(guidance, weekNum) {
-            // Generate contextual week titles based on progression
-            const level = guidance.name;
-            const month = Math.ceil(weekNum / 4);
-            
-            if (weekNum <= 4) return "Foundation";
-            if (weekNum <= 8) return "Development";
-            if (weekNum <= 13) return "Refinement";
-            return "Growth";
         }
         
         function populateQuickReference(score) {
             const level = getLevel(score);
-            const guidance = detailedGuidance[level];
+            const guidance = monthlyGuidance[level];
             
             let quickRefHTML = `
-                <h3>Your Focus Areas (Reminder)</h3>
+                <h3>Your Focus Areas</h3>
                 <div style="margin-bottom: 2rem;">
                     ${guidance.focusAreas.map((area, idx) => `
                         <div class="focus-area-box">
@@ -1002,23 +1042,19 @@
                     `).join('')}
                 </div>
                 
-                <h3>⚠️ Warning Signs for Your Readiness Level</h3>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
-                    ${guidance.warningsSigns.map(sign => `<li>${sign}</li>`).join('')}
-                </ul>
-                
-                <h3>✓ Weekly Check-In Questions (Every Friday)</h3>
-                <ul class="checklist" style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
-                    ${guidance.weeklyCheckInQuestions.map(q => `
-                        <li style="margin-bottom: 0.75rem;">
-                            <label><input type="checkbox"> ${q}</label>
-                        </li>
+                <h3>Your 3-Month Journey</h3>
+                <div style="margin-bottom: 2rem;">
+                    ${guidance.months.map(month => `
+                        <div class="focus-area-box">
+                            <strong>Month ${month.monthNum}: ${month.monthTitle}</strong>
+                            <p><em>${month.monthGoal}</em></p>
+                        </div>
                     `).join('')}
-                </ul>
+                </div>
                 
                 <div class="alert alert-success" style="margin-top: 2rem;">
-                    <strong>Remember:</strong> Your 90-day roadmap is personalized to your readiness level. 
-                    Review it weekly and celebrate small wins. You're building the leadership skills that will define your PM career!
+                    <strong>Remember:</strong> Your 3-month roadmap is personalized to your readiness level. 
+                    Review each month weekly and celebrate small wins. You're building PM capability that will define your career!
                 </div>
             `;
             
@@ -1030,93 +1066,6 @@
             document.getElementById(sectionId).classList.remove('hidden');
             document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
             event.target.classList.add('active');
-        }
-        
-        function exportData() {
-            // EXPORT FORMAT: JSON
-            // File includes score, level, focus areas, timestamp, and full roadmap data
-            const score = localStorage.getItem('pmScore');
-            if (!score) {
-                alert('Generate your roadmap first!');
-                return;
-            }
-            
-            const level = getLevel(parseInt(score));
-            const guidance = detailedGuidance[level];
-            
-            // Create comprehensive export object
-            const exportData = {
-                exportFormat: "JSON",
-                exportVersion: "1.0",
-                exportDate: new Date().toISOString(),
-                student: {
-                    score: parseInt(score),
-                    readinessLevel: level,
-                    levelName: guidance.name,
-                    levelRange: guidance.range
-                },
-                focusAreas: guidance.focusAreas.map(area => ({
-                    title: area.title,
-                    description: area.text
-                })),
-                roadmap: {
-                    month1: {
-                        title: "Days 1-30: Foundation Phase",
-                        weeks: guidance.weeks.slice(0, 4)
-                    },
-                    month2: {
-                        title: "Days 31-60: Development Phase",
-                        weeks: extendWeeks(guidance, 5, 8)
-                    },
-                    month3: {
-                        title: "Days 61-90: Refinement Phase",
-                        weeks: extendWeeks(guidance, 9, 13)
-                    }
-                },
-                quickReference: {
-                    warningsSigns: guidance.warningsSigns,
-                    weeklyCheckInQuestions: guidance.weeklyCheckInQuestions
-                }
-            };
-            
-            // Download JSON file
-            const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `90day-roadmap-level-${guidance.range}-${new Date().toISOString().split('T')[0]}.json`;
-            a.click();
-            URL.revokeObjectURL(url);
-            showSaveIndicator();
-        }
-        
-        function triggerImport() {
-            document.getElementById('importFile').click();
-        }
-        
-        function importData() {
-            const file = document.getElementById('importFile').files[0];
-            if (!file) return;
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const data = JSON.parse(e.target.result);
-                    if (data.student && data.student.score) {
-                        const score = data.student.score;
-                        localStorage.setItem('pmScore', score);
-                        document.getElementById('scoreInput').value = score;
-                        displayResults(score);
-                        populateMonthPlans(score);
-                        populateQuickReference(score);
-                        showSaveIndicator();
-                        showSection('results');
-                    }
-                } catch (error) {
-                    alert('Invalid JSON file. Please select a valid roadmap backup exported from this application.');
-                }
-            };
-            reader.readAsText(file);
         }
         
         function printRoadmap() {
@@ -1142,7 +1091,7 @@
             if (score) {
                 document.getElementById('scoreInput').value = score;
                 displayResults(parseInt(score));
-                populateMonthPlans(parseInt(score));
+                populateMonths(parseInt(score));
                 populateQuickReference(parseInt(score));
             }
         });
